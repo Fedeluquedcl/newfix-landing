@@ -729,42 +729,129 @@ function App() {
               ✦ Hablemos
             </span>
             <h2 className="text-4xl font-bold text-white">Contáctanos</h2>
+            <p className="text-white/50 mt-3">Estamos para ayudarte. Elegí el canal que prefieras.</p>
           </div>
-          <div className="max-w-2xl mx-auto backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8 space-y-6">
-            <div className="flex items-center">
-              <MapPin className="h-6 w-6 text-cyan-400 mr-3 flex-shrink-0" />
-              <span className="text-white/70">Florencio Varela, Buenos Aires, Argentina</span>
-            </div>
-            <div className="flex items-start">
-              <Clock className="h-6 w-6 text-cyan-400 mr-3 flex-shrink-0 mt-1" />
-              <div className="text-white/70 space-y-1">
-                <p className="text-white/50 text-sm uppercase tracking-widest font-semibold">Horario de atención</p>
-                <p>Lunes a Viernes: 9:00 - 18:00</p>
-                <p>Sábados: 9:00 - 13:00</p>
-                <p>Domingos y feriados: Cerrado</p>
+
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+
+            {/* Info */}
+            <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8 space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="bg-cyan-500/10 border border-cyan-400/20 p-3 rounded-xl flex-shrink-0">
+                  <MapPin className="h-5 w-5 text-cyan-400" />
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs uppercase tracking-widest font-semibold mb-1">Ubicación</p>
+                  <p className="text-white/80">Florencio Varela, Buenos Aires</p>
+                  <p className="text-white/50 text-sm mt-1">Suc. Pago: C550 N829, Florencio Varela</p>
+                </div>
               </div>
+
+              <div className="w-full h-px bg-white/10" />
+
+              <div className="flex items-start gap-4">
+                <div className="bg-cyan-500/10 border border-cyan-400/20 p-3 rounded-xl flex-shrink-0">
+                  <Clock className="h-5 w-5 text-cyan-400" />
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs uppercase tracking-widest font-semibold mb-2">Horario de atención</p>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between gap-8">
+                      <span className="text-white/70">Lunes a Viernes</span>
+                      <span className="text-white font-medium">9:00 – 17:00</span>
+                    </div>
+                    <div className="flex justify-between gap-8">
+                      <span className="text-white/70">Sábados</span>
+                      <span className="text-white font-medium">9:00 – 13:00</span>
+                    </div>
+                    <div className="flex justify-between gap-8">
+                      <span className="text-white/70">Domingos y feriados</span>
+                      <span className="text-white/40 font-medium">Cerrado</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full h-px bg-white/10" />
+
+              <a
+                href="https://maps.google.com/?q=C550+N829+Florencio+Varela+Buenos+Aires"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all text-sm font-medium"
+              >
+                <MapPin className="h-4 w-4 text-cyan-400" />
+                Ver en Google Maps
+              </a>
             </div>
-            <div className="w-full h-px bg-white/10" />
-            <div className="flex flex-col space-y-4">
-              <a href="https://wa.me/5401123241875" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-green-400 transition-colors group">
-                <svg viewBox="0 0 24 24" className="h-6 w-6 text-green-400 mr-3 flex-shrink-0" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                </svg>
-                <span className="text-white/70 group-hover:text-green-400 transition-colors">+54 011 2324-1875</span>
+
+            {/* Canales */}
+            <div className="flex flex-col gap-4">
+              <a
+                href="https://wa.me/5491123241875"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-green-500/10 border border-green-500/30 hover:border-green-400/60 hover:bg-green-500/15 transition-all group"
+              >
+                <div className="bg-green-500/20 p-3 rounded-xl flex-shrink-0">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6 text-green-400" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-white font-semibold">WhatsApp</p>
+                  <p className="text-white/50 text-sm">+54 9 11 2324-1875 · Canal más rápido</p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-white/30 -rotate-90 group-hover:text-white/60 transition-colors" />
               </a>
-              <a href="mailto:contacto@newfix.net" className="flex items-center group transition-colors">
-                <Mail className="h-6 w-6 text-cyan-400 mr-3 flex-shrink-0" />
-                <span className="text-white/70 group-hover:text-cyan-400 transition-colors">contacto@newfix.net</span>
+
+              <a
+                href="mailto:contacto@newfix.net"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/30 hover:bg-white/8 transition-all group"
+              >
+                <div className="bg-cyan-500/10 border border-cyan-400/20 p-3 rounded-xl flex-shrink-0">
+                  <Mail className="h-6 w-6 text-cyan-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-white font-semibold">Email</p>
+                  <p className="text-white/50 text-sm">contacto@newfix.net</p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-white/30 -rotate-90 group-hover:text-white/60 transition-colors" />
               </a>
-              <a href="https://www.instagram.com/newfixinternet/" target="_blank" rel="noopener noreferrer" className="flex items-center group transition-colors">
-                <Instagram className="h-6 w-6 text-pink-500 mr-3 flex-shrink-0" />
-                <span className="text-white/70 group-hover:text-pink-400 transition-colors">@newfixinternet</span>
+
+              <a
+                href="https://www.instagram.com/newfixinternet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-pink-400/30 hover:bg-white/8 transition-all group"
+              >
+                <div className="bg-pink-500/10 border border-pink-400/20 p-3 rounded-xl flex-shrink-0">
+                  <Instagram className="h-6 w-6 text-pink-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-white font-semibold">Instagram</p>
+                  <p className="text-white/50 text-sm">@newfixinternet</p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-white/30 -rotate-90 group-hover:text-white/60 transition-colors" />
               </a>
-              <a href="https://www.facebook.com/NewfixInternet" target="_blank" rel="noopener noreferrer" className="flex items-center group transition-colors">
-                <Facebook className="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" />
-                <span className="text-white/70 group-hover:text-blue-400 transition-colors">Newfix Internet</span>
+
+              <a
+                href="https://www.facebook.com/NewfixInternet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/30 hover:bg-white/8 transition-all group"
+              >
+                <div className="bg-blue-500/10 border border-blue-400/20 p-3 rounded-xl flex-shrink-0">
+                  <Facebook className="h-6 w-6 text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-white font-semibold">Facebook</p>
+                  <p className="text-white/50 text-sm">Newfix Internet</p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-white/30 -rotate-90 group-hover:text-white/60 transition-colors" />
               </a>
             </div>
+
           </div>
         </div>
       </section>
