@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Clock, Shield, MapPin, Wifi, CheckCircle2, ChevronDown, Mail, Instagram, Facebook, Menu, X } from 'lucide-react';
+import { Clock, Shield, MapPin, Wifi, CheckCircle2, ChevronDown, Mail, Instagram, Facebook, Menu, X, Network, Globe, Zap } from 'lucide-react';
 import { NewFixPricingSection, type NewFixPlanProps } from '@/components/ui/animated-glassy-pricing';
 
 // ── WebGL Fiber Optic Hero Canvas ──
@@ -382,6 +382,7 @@ function App() {
     ['#ventajas', 'Ventajas'],
     ['#cobertura', 'Cobertura'],
     ['#test', 'Test'],
+    ['#faqs', 'FAQ'],
     ['#contacto', 'Contacto'],
   ];
 
@@ -475,19 +476,65 @@ function App() {
               ✦ Nuestras ventajas
             </span>
             <h2 className="text-4xl font-bold text-white">¿Por Qué Elegirnos?</h2>
+            <p className="text-white/50 mt-3 max-w-xl mx-auto">Somos un ISP local con infraestructura propia. Sin intermediarios, sin excusas.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: <Clock className="h-10 w-10 text-cyan-400" />, title: 'Instalación Rápida', desc: 'Conexión en 24 horas' },
-              { icon: <Shield className="h-10 w-10 text-blue-400" />, title: 'Servicio Garantizado', desc: 'Soporte técnico permanente' },
-              { icon: <Wifi className="h-10 w-10 text-cyan-400" />, title: 'Conexión Estable', desc: 'Alta disponibilidad garantizada' },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 hover:bg-white/8 transition-all hover:scale-105">
-                <div className="bg-cyan-500/10 border border-cyan-400/20 p-4 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+              {
+                icon: <Network className="h-9 w-9 text-cyan-400" />,
+                title: 'ISP Local con ASN Propio',
+                desc: 'Tenemos nuestro propio Número de Sistema Autónomo. Eso significa rutas más directas, menor latencia y mayor estabilidad que los revendedores.',
+                highlight: true,
+              },
+              {
+                icon: <Globe className="h-9 w-9 text-blue-400" />,
+                title: 'DNS con Filtrado',
+                desc: 'Nuestros servidores DNS propios permiten filtrar contenido malicioso, phishing y publicidad invasiva antes de que llegue a tu red.',
+                highlight: false,
+              },
+              {
+                icon: <Zap className="h-9 w-9 text-cyan-400" />,
+                title: 'Velocidad Simétrica',
+                desc: 'Misma velocidad de subida y bajada en todos los planes. Ideal para videollamadas, trabajo remoto y streaming sin cortes.',
+                highlight: false,
+              },
+              {
+                icon: <Clock className="h-9 w-9 text-cyan-400" />,
+                title: 'Instalación Rápida',
+                desc: 'Coordinamos la visita técnica y dejamos tu conexión funcionando. Instalación gratuita en todos los planes.',
+                highlight: false,
+              },
+              {
+                icon: <Shield className="h-9 w-9 text-blue-400" />,
+                title: 'Soporte Permanente',
+                desc: 'Monitoreamos la red las 24 hs. Si hay un corte, ya lo sabemos antes de que nos escribas.',
+                highlight: false,
+              },
+              {
+                icon: <Wifi className="h-9 w-9 text-cyan-400" />,
+                title: 'Sin Límite de Datos',
+                desc: 'Navegás sin tope de GB ni throttling. Todos los planes incluyen datos ilimitados y router WiFi.',
+                highlight: false,
+              },
+            ].map(({ icon, title, desc, highlight }) => (
+              <div
+                key={title}
+                className={`text-center p-8 backdrop-blur-sm border rounded-2xl transition-all hover:scale-105 ${
+                  highlight
+                    ? 'bg-cyan-500/10 border-cyan-400/40 hover:border-cyan-400/60'
+                    : 'bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/8'
+                }`}
+              >
+                <div
+                  className={`p-4 rounded-full mx-auto mb-5 flex items-center justify-center ${
+                    highlight ? 'bg-cyan-500/20 border border-cyan-400/40' : 'bg-cyan-500/10 border border-cyan-400/20'
+                  }`}
+                  style={{ width: '72px', height: '72px' }}
+                >
                   {icon}
                 </div>
-                <h3 className="text-2xl font-semibold mb-3 text-white">{title}</h3>
-                <p className="text-white/60 text-lg">{desc}</p>
+                <h3 className="text-xl font-semibold mb-3 text-white">{title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
