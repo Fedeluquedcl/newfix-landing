@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Clock, Shield, MapPin, Wifi, CheckCircle2, ChevronDown, ChevronUp, Mail, Instagram, Facebook, Menu, X } from 'lucide-react';
+import { Clock, Shield, MapPin, Wifi, CheckCircle2, ChevronDown, Mail, Instagram, Facebook, Menu, X } from 'lucide-react';
 import { NewFixPricingSection, type NewFixPlanProps } from '@/components/ui/animated-glassy-pricing';
 
 // ── WebGL Fiber Optic Hero Canvas ──
@@ -190,16 +190,156 @@ const HOGAR_PLANS: NewFixPlanProps[] = [
   },
 ];
 
-function FAQ({ question, answer }: { question: string; answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
+const faqCategories = [
+  {
+    id: 'contacto', label: 'Contacto', emoji: '💬',
+    faqs: [
+      { question: '¿Cómo me contacto con Newfix?', answer: 'Podés escribirnos por WhatsApp +54 9 11 2324-1875.' },
+      { question: '¿Cuál es el horario de atención?', answer: 'Por WhatsApp: Lunes a Viernes de 9 a 17 hs y Sábados de 9 a 13 hs. Oficina (C550 N829, Florencio Varela): Lunes a Viernes de 9 a 13 y de 14 a 16 hs, Sábados de 9 a 13 hs.' },
+      { question: '¿Dónde queda la Suc. Pago?', answer: 'En C 550 N829, Florencio Varela (Buenos Aires).' },
+      { question: '¿Atienden por redes sociales?', answer: 'No. Estamos en Instagram @newfixinternet y Facebook, pero el canal más rápido es el WhatsApp.' },
+      { question: '¿Qué hago si tengo una urgencia fuera del horario?', answer: 'Dejanos el mensaje por WhatsApp: monitoreamos la red de forma permanente y, ante un corte masivo, te informamos el estado.' },
+    ],
+  },
+  {
+    id: 'cuenta', label: 'Mi cuenta', emoji: '👤',
+    faqs: [
+      { question: '¿Cómo accedo a mi cuenta de cliente?', answer: 'Ingresá al portal: https://clientes.newfix.net/' },
+      { question: '¿Qué puedo hacer desde el portal?', answer: 'Ver tus facturas y vencimientos, consultar el estado de cuenta, pagar el servicio y actualizar tus datos de contacto.' },
+      { question: 'Olvidé la contraseña del portal, ¿cómo la recupero?', answer: 'Escribinos por WhatsApp y te ayudamos a restablecerla.' },
+      { question: '¿Cómo actualizo mis datos?', answer: 'Pedinos el cambio por WhatsApp.' },
+    ],
+  },
+  {
+    id: 'facturacion', label: 'Facturación', emoji: '🧾',
+    faqs: [
+      { question: '¿Qué medios de pago aceptan?', answer: 'Transferencia bancaria (alias propio por cliente), efectivo en C550 N829 Florencio Varela, o tarjeta/Mercado Pago mediante link de pago.' },
+      { question: '¿Cuándo vence mi factura?', answer: 'Tu factura tiene un primer vencimiento. Podés verlo en el portal o consultarlo por WhatsApp.' },
+      { question: '¿La facturación es por mes adelantado?', answer: 'Sí. Se factura el mes en curso a comienzos de cada mes.' },
+      { question: '¿Los precios son una promoción que después aumenta?', answer: 'No. Todos nuestros precios son precios reales de lista. Pagás siempre lo que ves publicado.' },
+      { question: 'Me suspendieron el servicio por falta de pago, ¿cómo lo reactivo?', answer: 'Regularizá la deuda por transferencia, Mercado Pago o efectivo. Una vez acreditado, el servicio se reactiva.' },
+    ],
+  },
+  {
+    id: 'planes', label: 'Planes', emoji: '🌐',
+    faqs: [
+      { question: '¿Qué planes de internet tienen?', answer: 'Ofrecemos planes de 300, 500 y 800 Mbps según la localidad. Mirá las velocidades y precios en newfix.net.' },
+      { question: '¿La velocidad es simétrica?', answer: 'Sí, todos nuestros planes son simétricos: misma velocidad de bajada y de subida.' },
+      { question: '¿Tienen límite de datos?', answer: 'No. Navegás sin límite de datos.' },
+      { question: '¿Incluye el router/WiFi?', answer: 'Sí, el router WiFi viene incluido. En los planes de 300 y 500 Mbps es Dual Band; en el de 800 Mbps es WiFi 6 con tecnología XGPON.' },
+      { question: '¿La instalación tiene costo?', answer: 'La instalación es gratuita.' },
+      { question: '¿Puedo cambiar de plan?', answer: 'Sí. Escribinos por WhatsApp y gestionamos el cambio.' },
+      { question: '¿Tienen planes para empresas?', answer: 'Sí. Contamos con planes corporativos con IP pública, soporte prioritario y atención personalizada.' },
+    ],
+  },
+  {
+    id: 'soporte', label: 'Soporte', emoji: '🛠️',
+    faqs: [
+      { question: 'Me quedé sin internet, ¿qué hago?', answer: '1) Mirá las luces del equipo. 2) Reiniciá el equipo: desenchufalo, esperá 30 segundos y volvé a enchufarlo. 3) Revisá que los cables estén bien conectados. Si seguís sin servicio, escribinos por WhatsApp.' },
+      { question: 'El equipo tiene la luz "LOS" en rojo, ¿qué significa?', answer: 'Indica falta de señal de fibra. Revisá que el cable no esté doblado o desconectado. Si la luz no se apaga, probablemente haga falta una visita técnica.' },
+      { question: 'Tengo internet pero anda lento, ¿qué reviso?', answer: 'Conectá por cable para comparar, acercate al router, cerrá descargas activas. Si por cable también está lento, escribinos.' },
+    ],
+  },
+  {
+    id: 'wifi', label: 'WiFi', emoji: '📶',
+    faqs: [
+      { question: '¿Cómo mejoro la señal del WiFi?', answer: 'Ubicá el router en un lugar central y alto. Evitá paredes gruesas, metales y el microondas cerca. Para casas grandes consultanos por repetidores o sistemas mesh.' },
+      { question: '¿Cómo cambio el nombre o la clave del WiFi?', answer: 'Te lo gestionamos desde soporte. Escribinos por WhatsApp y coordinamos el cambio.' },
+      { question: '¿Conviene usar cable o WiFi?', answer: 'Para juegos online, streaming 4K o teletrabajo, el cable ofrece menor latencia. El WiFi es ideal para movilidad y uso general.' },
+    ],
+  },
+  {
+    id: 'gigared', label: 'GIGARED TV', emoji: '📺',
+    faqs: [
+      { question: '¿Qué es GIGARED?', answer: 'Es televisión por streaming: canales en vivo, deportes, series y películas, sin antena ni decodificador.' },
+      { question: '¿Qué combos hay?', answer: 'Consultá disponibilidad por WhatsApp. Accedés a más de 80 canales.' },
+      { question: '¿En qué dispositivos puedo ver GIGARED Play?', answer: 'Smart TV, celular, tablet, notebook, Apple TV, Roku, Fire TV y Google TV.' },
+    ],
+  },
+  {
+    id: 'contratar', label: 'Contratar', emoji: '🚀',
+    faqs: [
+      { question: '¿Cómo contrato el servicio?', answer: 'Mirá los planes en la web o escribinos directamente por WhatsApp.' },
+      { question: '¿Tienen cobertura en mi domicilio?', answer: 'Pasanos tu dirección por WhatsApp y verificamos la factibilidad.' },
+      { question: '¿Cuánto tarda la instalación?', answer: 'Coordinamos una visita técnica y te avisamos la fecha al momento de contratar. La instalación es gratuita.' },
+    ],
+  },
+];
+
+function FAQSection() {
+  const [activeCategory, setActiveCategory] = useState('contacto');
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const currentCategory = faqCategories.find(c => c.id === activeCategory)!;
+
+  const handleCategoryChange = (id: string) => {
+    setActiveCategory(id);
+    setOpenIndex(null);
+  };
+
   return (
-    <div className="border-b border-white/10 py-4">
-      <button className="flex justify-between items-center w-full text-left" onClick={() => setIsOpen(!isOpen)}>
-        <span className="text-lg font-medium text-white/90">{question}</span>
-        {isOpen ? <ChevronUp className="h-5 w-5 text-cyan-400 flex-shrink-0" /> : <ChevronDown className="h-5 w-5 text-cyan-400 flex-shrink-0" />}
-      </button>
-      {isOpen && <div className="mt-3"><p className="text-white/60 leading-relaxed">{answer}</p></div>}
-    </div>
+    <section id="faqs" className="py-20 bg-[#0a0a0a]">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
+            ✦ Dudas frecuentes
+          </span>
+          <h2 className="text-4xl font-bold text-white">Preguntas Frecuentes</h2>
+          <p className="text-white/50 mt-3 max-w-xl mx-auto">Encontrá respuestas sobre internet, facturación, soporte técnico y más.</p>
+        </div>
+
+        {/* Category tabs */}
+        <div className="flex gap-2 overflow-x-auto pb-2 mb-10 scrollbar-hide justify-start md:justify-center">
+          {faqCategories.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => handleCategoryChange(cat.id)}
+              className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${
+                activeCategory === cat.id
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 border-transparent text-white shadow-lg shadow-cyan-500/25'
+                  : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white'
+              }`}
+            >
+              <span>{cat.emoji}</span>
+              <span>{cat.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Accordion */}
+        <div className="max-w-3xl mx-auto">
+          {currentCategory.faqs.map((faq, i) => (
+            <div key={`${activeCategory}-${i}`} className="border-b border-white/10">
+              <button
+                className="flex justify-between items-center w-full text-left py-5 gap-4"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              >
+                <span className="text-base font-medium text-white/90">{faq.question}</span>
+                <ChevronDown
+                  className={`h-5 w-5 text-cyan-400 flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${openIndex === i ? 'max-h-96 pb-5' : 'max-h-0'}`}>
+                <p className="text-white/60 leading-relaxed">{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-14">
+          <p className="text-white/50 mb-4">¿No encontraste lo que buscabas?</p>
+          <a
+            href="https://wa.me/5491123241875"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20"
+          >
+            Escribinos por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -234,14 +374,6 @@ const whatsappSvg = (
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const faqs = [
-    { question: '¿Cuánto demora la instalación?', answer: 'La instalación se realiza en un plazo máximo de 24 horas hábiles desde la contratación del servicio.' },
-    { question: '¿Qué necesito para contratar el servicio?', answer: 'Solo necesitas un documento de identidad válido y estar en nuestra zona de cobertura. Nuestro equipo técnico se encarga de toda la instalación.' },
-    { question: '¿El servicio incluye WiFi?', answer: 'Sí, todos nuestros planes incluyen un router WiFi de última generación para que puedas conectar todos tus dispositivos.' },
-    { question: '¿Tienen permanencia mínima?', answer: 'No exigimos permanencia mínima. Nuestro compromiso es brindarte el mejor servicio para que elijas quedarte con nosotros.' },
-    { question: '¿Cómo realizo el pago mensual?', answer: 'Ofrecemos múltiples métodos de pago: transferencia bancaria, efectivo en puntos autorizados y pago con tarjeta a través de nuestra web.' },
-  ];
 
   const navLinks = [
     ['#', 'Inicio'],
@@ -471,19 +603,7 @@ function App() {
       </section>
 
       {/* ── FAQs ── */}
-      <section id="faqs" className="py-20 bg-[#0a0a0a]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
-              ✦ Dudas frecuentes
-            </span>
-            <h2 className="text-4xl font-bold text-white">Preguntas Frecuentes</h2>
-          </div>
-          <div className="max-w-3xl mx-auto backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl px-8 py-4">
-            {faqs.map((faq, i) => <FAQ key={i} question={faq.question} answer={faq.answer} />)}
-          </div>
-        </div>
-      </section>
+      <FAQSection />
 
       {/* ── CONTACTO ── */}
       <section id="contacto" className="py-20 bg-[#0f172a]">
