@@ -345,19 +345,63 @@ function FAQSection() {
 
 function SpeedTest() {
   const tests = [
-    { name: 'Test NewFix', desc: 'Test oficial de NewFix', url: 'https://newfix.speedtestcustom.com/' },
-    { name: 'WIFIMAN', desc: 'Herramienta de diagnóstico WiFi', url: 'http://wifiman.com/' },
-    { name: 'SPEEDTEST', desc: 'Test de velocidad Ookla', url: 'https://www.speedtest.net/' },
-    { name: 'FAST', desc: 'Test de velocidad de Netflix', url: 'https://fast.com/es/' },
+    {
+      name: 'Test NewFix',
+      desc: 'Test oficial de NewFix',
+      detail: 'El más preciso para verificar la velocidad real de tu plan. Medí bajada, subida y latencia en nuestra red.',
+      url: 'https://newfix.speedtestcustom.com/',
+      isMain: true,
+    },
+    {
+      name: 'WIFIMAN',
+      desc: 'Herramienta de diagnóstico WiFi',
+      detail: 'Analizá la cobertura y calidad de tu red WiFi en cada rincón del hogar.',
+      url: 'http://wifiman.com/',
+      isMain: false,
+    },
+    {
+      name: 'SPEEDTEST',
+      desc: 'Test de velocidad Ookla',
+      detail: 'El test más usado a nivel global. Útil para comparar con otros resultados.',
+      url: 'https://www.speedtest.net/',
+      isMain: false,
+    },
+    {
+      name: 'FAST',
+      desc: 'Test de velocidad de Netflix',
+      detail: 'Medí tu velocidad de descarga real en condiciones de streaming.',
+      url: 'https://fast.com/es/',
+      isMain: false,
+    },
   ];
+
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-4 gap-5">
       {tests.map(t => (
-        <a key={t.name} href={t.url} target="_blank" rel="noopener noreferrer"
-          className="backdrop-blur-sm bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 hover:border-cyan-400/30 transition-all hover:scale-105 group">
-          <h3 className="text-xl font-bold text-cyan-400 mb-3">{t.name}</h3>
-          <p className="text-white/60 mb-4 text-sm">{t.desc}</p>
-          <span className="inline-block mt-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
+        <a
+          key={t.name}
+          href={t.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`relative flex flex-col p-6 rounded-2xl border transition-all hover:scale-105 group ${
+            t.isMain
+              ? 'bg-cyan-500/10 border-cyan-400/50 hover:border-cyan-400 shadow-lg shadow-cyan-500/10'
+              : 'backdrop-blur-sm bg-white/5 border-white/10 hover:bg-white/10 hover:border-cyan-400/30'
+          }`}
+        >
+          {t.isMain && (
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Oficial NewFix
+            </span>
+          )}
+          <h3 className={`text-lg font-bold mb-1 ${t.isMain ? 'text-cyan-300' : 'text-cyan-400'}`}>{t.name}</h3>
+          <p className="text-white/50 text-xs font-semibold uppercase tracking-wide mb-3">{t.desc}</p>
+          <p className="text-white/60 text-sm leading-relaxed flex-1 mb-5">{t.detail}</p>
+          <span className={`inline-block text-center py-2 px-4 rounded-lg text-sm font-semibold transition-all ${
+            t.isMain
+              ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white group-hover:from-cyan-400 group-hover:to-blue-500'
+              : 'bg-white/10 text-white group-hover:bg-white/20'
+          }`}>
             Iniciar Test
           </span>
         </a>
