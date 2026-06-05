@@ -445,25 +445,50 @@ function App() {
             <h2 className="text-4xl font-bold text-white">Sobre Nosotros</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+
+            {/* Texto */}
             <div>
-              <h3 className="text-3xl font-semibold mb-6 text-white">Conectando hogares y empresas</h3>
-              <p className="text-white/60 mb-6 text-lg leading-relaxed">
-                En NewFix, nos dedicamos a proporcionar servicios de internet de alta calidad, garantizando una conexión estable y velocidades óptimas para satisfacer todas tus necesidades digitales.
+              <h3 className="text-3xl font-semibold mb-6 text-white leading-tight">
+                Conectando la zona con<br />
+                <span className="text-cyan-400">internet de verdad</span>
+              </h3>
+              <p className="text-white/60 mb-4 text-lg leading-relaxed">
+                NewFix no nació como una empresa gigante. Nació como un proyecto local, con trabajo técnico, esfuerzo diario y una idea clara: brindar internet confiable donde muchas veces las grandes empresas no llegan bien o no responden como deberían.
               </p>
-              <p className="text-white/60 text-lg leading-relaxed">
-                Con años de experiencia en el sector, nuestro equipo de profesionales trabaja constantemente para asegurar que recibas el mejor servicio posible.
+              <p className="text-white/60 mb-8 text-lg leading-relaxed">
+                Hoy seguimos creciendo con fibra óptica, soluciones inalámbricas y enlaces dedicados para hogares, comercios, empresas e ISPs. Invertimos en infraestructura, monitoreo y soporte técnico porque entendemos que detrás de cada conexión hay una casa, un trabajo, una familia o un negocio que necesita estar conectado.
               </p>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all">
-                <h4 className="text-4xl font-bold text-cyan-400 mb-3">99.9%</h4>
-                <p className="text-white/60 font-medium">Tiempo Activo</p>
+              <div className="space-y-3">
+                <p className="text-white/50 text-xs uppercase tracking-widest font-semibold mb-4">Lo que nos representa</p>
+                {[
+                  '+10 años trabajando en conectividad',
+                  'Infraestructura propia pensada para seguir creciendo',
+                  'Atención cercana sin vueltas ni respuestas genéricas',
+                  'Equipo técnico local con conocimiento real de la red',
+                ].map(item => (
+                  <div key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-white/70">{item}</span>
+                  </div>
+                ))}
               </div>
-              <div className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all">
-                <h4 className="text-4xl font-bold text-blue-400 mb-3">+10</h4>
-                <p className="text-white/60 font-medium">Años de Experiencia</p>
-              </div>
             </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-5">
+              {[
+                { value: '99.9%', label: 'Tiempo Activo', color: 'text-cyan-400' },
+                { value: '+10', label: 'Años en la zona', color: 'text-blue-400' },
+                { value: '3', label: 'Municipios conectados', color: 'text-cyan-400' },
+                { value: '24/7', label: 'Monitoreo de red', color: 'text-blue-400' },
+              ].map(({ value, label, color }) => (
+                <div key={label} className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all">
+                  <h4 className={`text-4xl font-bold mb-3 ${color}`}>{value}</h4>
+                  <p className="text-white/60 font-medium text-sm">{label}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
