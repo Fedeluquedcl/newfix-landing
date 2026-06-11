@@ -188,6 +188,18 @@ const HOGAR_PLANS: NewFixPlanProps[] = [
     buttonVariant: 'secondary',
     isPopular: false,
   },
+  {
+    planName: '🚀 Fibra 800 Mbps',
+    description: 'Máxima potencia con WiFi 6',
+    speed: '800 Mbps',
+    price: '$XX.XXX',
+    priceNote: 'Precio sin impuesto: $XX.XXX',
+    features: ['Tecnología XGPON', 'Router WiFi 6 Incluido', 'Instalación express'],
+    buttonText: 'Contratar',
+    buttonHref: 'https://forms.gle/uXXEkfX1bP393zuH8',
+    buttonVariant: 'secondary',
+    isPopular: false,
+  },
 ];
 
 const faqCategories = [
@@ -410,6 +422,390 @@ function SpeedTest() {
   );
 }
 
+function DGOSection() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const dgoTabs = [
+    { label: 'Ultra Lite', short: 'TV' },
+    { label: 'Ultra Lite + DSports + Prime Video', short: 'TV' },
+    { label: 'Full + DSports + Prime + ESPN + TNT Sports', short: 'FULL' },
+  ];
+
+  const dgoPlans = [
+    // Tab 0: Ultra Lite
+    [
+      {
+        speed: '300 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
+        includes: [] as string[],
+      },
+      {
+        speed: '500 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: true,
+        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
+        includes: [] as string[],
+      },
+      {
+        speed: '800 Mbps',
+        router: 'WiFi 6',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
+        includes: [] as string[],
+      },
+    ],
+    // Tab 1: Ultra Lite + DSports + Prime Video
+    [
+      {
+        speed: '300 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
+        includes: ['DSports', 'Prime Video'],
+      },
+      {
+        speed: '500 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: true,
+        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
+        includes: ['DSports', 'Prime Video'],
+      },
+      {
+        speed: '800 Mbps',
+        router: 'WiFi 6',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
+        includes: ['DSports', 'Prime Video'],
+      },
+    ],
+    // Tab 2: Full
+    [
+      {
+        speed: '300 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
+        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
+      },
+      {
+        speed: '500 Mbps',
+        router: 'Dual Band',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: true,
+        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
+        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
+      },
+      {
+        speed: '800 Mbps',
+        router: 'WiFi 6',
+        price: '$XX.XXX',
+        sinImpuesto: '$XX.XXX',
+        popular: false,
+        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
+        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
+      },
+    ],
+  ];
+
+  const includeBadges: Record<string, { bg: string; text: string; label: string }> = {
+    'DSports':     { bg: 'bg-blue-600',  text: 'text-white', label: 'D SPORTS' },
+    'Prime Video': { bg: 'bg-[#00A8E1]', text: 'text-white', label: 'prime video' },
+    'ESPN':        { bg: 'bg-red-600',   text: 'text-white', label: 'ESPN' },
+    'TNT Sports':  { bg: 'bg-[#B2027A]', text: 'text-white', label: 'TNT Sports' },
+  };
+
+  return (
+    <section id="dgo" className="py-20 bg-[#060d1f]">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
+            ✦ Internet + TV
+          </span>
+          <h2 className="text-4xl font-bold text-white">
+            Internet + <span className="text-cyan-400">DGO</span>
+          </h2>
+          <p className="text-white/50 mt-3 max-w-xl mx-auto">
+            Somos partners oficiales de DGO. Sumá televisión en vivo, deportes y on demand a tu plan de fibra.
+          </p>
+        </div>
+
+        {/* DGO Tab buttons */}
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
+          {dgoTabs.map((tab, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveTab(i)}
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all border ${
+                activeTab === i
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 border-transparent text-white shadow-lg shadow-cyan-500/20'
+                  : 'bg-white/5 border-white/15 text-white/60 hover:bg-white/10 hover:text-white'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Plan cards */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {dgoPlans[activeTab].map((plan, i) => (
+            <div
+              key={i}
+              className={`relative flex flex-col rounded-2xl border p-7 transition-all ${
+                plan.popular
+                  ? 'bg-gradient-to-b from-[#0d1f3c] to-[#091528] border-cyan-400/50 shadow-xl shadow-cyan-500/10 scale-[1.02]'
+                  : 'bg-white/5 border-white/10'
+              }`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">
+                  MÁS ELEGIDO
+                </div>
+              )}
+
+              {/* DGO Logo badge */}
+              <div className="flex items-center gap-1 mb-4">
+                <span className="text-2xl font-black text-orange-500">D</span>
+                <span className={`text-2xl font-black ${activeTab === 2 ? 'text-cyan-400' : 'text-cyan-300'}`}>GO</span>
+                <span className={`text-xs font-bold ml-1 px-1.5 py-0.5 rounded ${activeTab === 2 ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/10 text-white/70'}`}>
+                  {dgoTabs[activeTab].short}
+                </span>
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-3">{dgoTabs[activeTab].label}</h3>
+
+              {/* Internet speed chip */}
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-3 py-1.5 mb-5 w-fit">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                <span className="text-white/80 text-sm font-medium">Internet {plan.speed} · {plan.router}</span>
+              </div>
+
+              {/* Features */}
+              <ul className="space-y-2.5 mb-6 flex-1">
+                {plan.features.map((f, j) => (
+                  <li key={j} className="flex items-start gap-2.5 text-sm text-white/70">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Price */}
+              <div className="mb-1">
+                <span className="text-4xl font-bold text-white">{plan.price}</span>
+                <span className="text-white/50 text-sm ml-1">/mes</span>
+              </div>
+              <p className="text-white/35 text-xs mb-5">Sin impuestos: {plan.sinImpuesto}</p>
+
+              {/* Include badges */}
+              {plan.includes.length > 0 && (
+                <div className="mb-5">
+                  <p className="text-white/35 text-xs uppercase tracking-widest mb-2">Incluye también</p>
+                  <div className="flex flex-wrap gap-2">
+                    {plan.includes.map(inc => (
+                      <span key={inc} className={`text-xs font-bold px-2.5 py-1 rounded ${includeBadges[inc].bg} ${includeBadges[inc].text}`}>
+                        {includeBadges[inc].label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* CTA */}
+              <a
+                href={`https://wa.me/5491123241875?text=Hola!%20Quiero%20contratar%20${encodeURIComponent(plan.speed)}%20con%20DGO%20${encodeURIComponent(dgoTabs[activeTab].label)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all ${
+                  plan.popular
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 shadow-lg'
+                    : 'bg-white/10 border border-white/15 text-white hover:bg-white/20'
+                }`}
+              >
+                Empezar →
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Canales link */}
+        <div className="text-center mt-10">
+          <a
+            href="/canales.html"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/15 text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
+          >
+            📺 Ver lista completa de canales →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GigaredSection() {
+  const [activeTab, setActiveTab] = useState<'tv' | 'futbol'>('tv');
+
+  const plans = {
+    tv: [
+      { speed: '300 Mbps', router: 'Dual Band', price: '$31.000', sinImpuesto: '$25.620', popular: false },
+      { speed: '500 Mbps', router: 'Dual Band', price: '$38.000', sinImpuesto: '$31.404', popular: true },
+      { speed: '800 Mbps', router: 'WiFi 6',    price: '$46.000', sinImpuesto: '$38.016', popular: false },
+    ],
+    futbol: [
+      { speed: '300 Mbps', router: 'Dual Band', price: '$53.000', sinImpuesto: '$43.802', popular: false },
+      { speed: '500 Mbps', router: 'Dual Band', price: '$60.000', sinImpuesto: '$49.587', popular: true },
+      { speed: '800 Mbps', router: 'WiFi 6',    price: '$68.000', sinImpuesto: '$56.198', popular: false },
+    ],
+  };
+
+  const baseFeatures = [
+    'Más de 70 canales en vivo',
+    'Señales nacionales e internacionales',
+    'Cine, series, infantiles y documentales',
+    'App disponible en celular y smart TV',
+  ];
+
+  const futbolFeatures = [
+    ...baseFeatures,
+    'TyC Sports, DEPORTV',
+    'ESPN, ESPN 2, ESPN 3, ESPN 4',
+    'FOX SPORTS, FOX SPORTS 2, FOX SPORTS 3',
+  ];
+
+  return (
+    <div>
+      {/* Header */}
+      <div className="text-center mb-10">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/15 border border-pink-400/25 text-pink-300 text-xs font-semibold uppercase tracking-widest mb-5">
+          ✦ Internet + TV cable
+        </span>
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <h2 className="text-4xl font-bold text-white">Internet +</h2>
+          <img src="/logos/gigaredplay.svg" alt="GigaredPlay" className="h-9 object-contain" />
+        </div>
+        <p className="text-white/50 mt-2 max-w-xl mx-auto text-sm">
+          Televisión por cable con señales nacionales, internacionales, cine, series y deportes.
+          {' '}<a href="/canales.html#gigared" className="text-pink-400 hover:text-pink-300 underline underline-offset-2">Ver lista de canales →</a>
+        </p>
+      </div>
+
+      {/* TV / TV + Pack Fútbol tabs */}
+      <div className="flex justify-center mb-10 gap-3">
+        <button
+          onClick={() => setActiveTab('tv')}
+          className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all border ${
+            activeTab === 'tv'
+              ? 'bg-gradient-to-r from-pink-600/30 to-purple-600/30 border-pink-400/50 text-white'
+              : 'bg-white/5 border-white/10 text-white/50 hover:text-white'
+          }`}
+        >
+          📺 TV
+          <span className="block text-xs font-normal opacity-60 mt-0.5">+70 canales en vivo</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('futbol')}
+          className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all border ${
+            activeTab === 'futbol'
+              ? 'bg-gradient-to-r from-pink-600/30 to-purple-600/30 border-pink-400/50 text-white'
+              : 'bg-white/5 border-white/10 text-white/50 hover:text-white'
+          }`}
+        >
+          ⚽ TV + Pack Fútbol
+          <span className="block text-xs font-normal opacity-60 mt-0.5">ESPN · FOX · TyC Sports</span>
+        </button>
+      </div>
+
+      {/* Plan cards */}
+      <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {plans[activeTab].map((plan, i) => (
+          <div
+            key={i}
+            className={`relative flex flex-col rounded-2xl border p-7 transition-all ${
+              plan.popular
+                ? 'bg-gradient-to-b from-[#1a0d2e] to-[#0f0820] border-pink-400/40 shadow-xl shadow-pink-500/10 scale-[1.02]'
+                : 'bg-white/5 border-white/10'
+            }`}
+          >
+            {plan.popular && (
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
+                MÁS ELEGIDO
+              </div>
+            )}
+
+            <div className="mb-4">
+              <img src="/logos/gigaredplay.svg" alt="GigaredPlay" className="h-7 object-contain" />
+            </div>
+
+            <h3 className="text-sm font-semibold text-white/60 mb-4">
+              {activeTab === 'tv' ? 'TV Cable' : 'TV + Pack Fútbol'}
+            </h3>
+
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-3 py-1.5 mb-5 w-fit">
+              <span className="w-2 h-2 rounded-full bg-pink-400 flex-shrink-0" />
+              <span className="text-white/80 text-sm font-medium">{plan.speed} · {plan.router}</span>
+            </div>
+
+            <ul className="space-y-2.5 mb-6 flex-1">
+              {(activeTab === 'tv' ? baseFeatures : futbolFeatures).map((f, j) => (
+                <li key={j} className="flex items-start gap-2.5 text-sm text-white/70">
+                  <CheckCircle2 className={`h-4 w-4 flex-shrink-0 mt-0.5 ${j >= baseFeatures.length ? 'text-yellow-400' : 'text-pink-400'}`} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mb-1">
+              <span className="text-4xl font-bold text-white">{plan.price}</span>
+              <span className="text-white/50 text-sm ml-1">/mes</span>
+            </div>
+            <p className="text-white/35 text-xs mb-5">Sin impuestos: {plan.sinImpuesto}</p>
+
+            <a
+              href={`https://wa.me/5491123241875?text=Hola!%20Quiero%20info%20sobre%20${encodeURIComponent(plan.speed)}%20con%20GigaredPlay%20${activeTab === 'futbol' ? 'Pack%20F%C3%BAtbol' : ''}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`block w-full text-center py-3 rounded-xl font-semibold text-sm transition-all ${
+                plan.popular
+                  ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:from-pink-500 hover:to-purple-500 shadow-lg'
+                  : 'bg-white/10 border border-white/15 text-white hover:bg-white/20'
+              }`}
+            >
+              Empezar →
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center mt-10">
+        <a
+          href="/canales.html#gigared"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/15 text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
+        >
+          📺 Ver grilla completa de canales →
+        </a>
+      </div>
+    </div>
+  );
+}
+
 const whatsappSvg = (
   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -418,11 +814,13 @@ const whatsappSvg = (
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activePlansTab, setActivePlansTab] = useState<'gigared' | 'internet' | 'dgo'>('dgo');
 
   const navLinks = [
     ['#', 'Inicio'],
     ['#nosotros', 'Nosotros'],
     ['#planes', 'Planes'],
+    ['#dgo', 'DGO TV'],
     ['#ventajas', 'Ventajas'],
     ['#cobertura', 'Cobertura'],
     ['#test', 'Test'],
@@ -610,13 +1008,67 @@ function App() {
         </div>
       </section>
 
-      {/* ── PLANES HOGAR ── */}
-      <NewFixPricingSection
-        title={<>El plan ideal para <span className="text-cyan-300">cada necesidad</span></>}
-        subtitle="Instalación gratuita y soporte técnico local incluidos en todos los planes."
-        plans={HOGAR_PLANS}
-        showBackground={true}
-      />
+      {/* ── PLANES (toggle) ── */}
+      <section id="planes" className="pt-16 pb-4 bg-[#060d1f]">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex rounded-2xl bg-white/5 border border-white/10 p-1.5 gap-1 flex-wrap justify-center">
+              <button
+                onClick={() => setActivePlansTab('gigared')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
+                  activePlansTab === 'gigared'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                <img src="/logos/gigaredplay.svg" alt="GigaredPlay" className="h-4 object-contain brightness-[10]" />
+              </button>
+              <button
+                onClick={() => setActivePlansTab('internet')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all ${
+                  activePlansTab === 'internet'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                🌐 Solo Internet
+              </button>
+              <button
+                onClick={() => setActivePlansTab('dgo')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
+                  activePlansTab === 'dgo'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                <img src="/logos/dgo.png" alt="DGO" className="h-5 object-contain" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {activePlansTab === 'internet' && (
+        <div className="bg-[#060d1f] pb-20">
+          <div className="container mx-auto px-6 pt-12">
+            <div className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
+                ✦ Fibra óptica
+              </span>
+              <h2 className="text-4xl font-bold text-white">Planes de <span className="text-cyan-400">Internet</span></h2>
+            </div>
+            <NewFixPricingSection plans={HOGAR_PLANS} />
+          </div>
+        </div>
+      )}
+      {activePlansTab === 'dgo' && <DGOSection />}
+      {activePlansTab === 'gigared' && (
+        <div className="py-20 bg-[#060d1f]">
+          <div className="container mx-auto px-6">
+            <GigaredSection />
+          </div>
+        </div>
+      )}
 
       {/* ── PLANES COMERCIO & DEDICADO ── */}
       <section className="py-20 bg-[#0f172a]">
