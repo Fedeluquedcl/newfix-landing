@@ -12,28 +12,82 @@
     .logo span { font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: 0.1em; }
     .back { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; padding: 0.5rem 1rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 9999px; transition: all 0.2s; }
     .back:hover { color: #fff; background: rgba(255,255,255,0.05); }
-    main { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    main { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
     .page-title { text-align: center; margin-bottom: 0.75rem; }
     .page-title h1 { font-size: 2.5rem; font-weight: 800; color: #fff; }
     .page-title h1 span { color: #22d3ee; }
     .subtitle { text-align: center; color: rgba(255,255,255,0.45); font-size: 0.95rem; margin-bottom: 2rem; }
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.25); color: #67e8f9; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 9999px; margin-bottom: 1rem; }
-    .category { margin-bottom: 2.5rem; }
-    .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .cat-emoji { font-size: 1.5rem; }
-    .cat-name { font-size: 1.1rem; font-weight: 700; color: #fff; }
-    .cat-count { background: rgba(34,211,238,0.15); color: #22d3ee; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 9999px; }
-    .channels { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .channel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); font-size: 0.8rem; font-weight: 500; padding: 0.4rem 0.85rem; border-radius: 0.5rem; transition: all 0.15s; }
-    .channel:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.3); color: #fff; }
-    .channel.highlight { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.3); color: #22d3ee; font-weight: 700; }
-    div.channel { display: flex; align-items: center; gap: 0.4rem; }
+    /* Tabs */
     .tab-nav { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 2.5rem; }
     .tab-btn { padding: 0.6rem 1.5rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); transition: all 0.2s; }
     .tab-btn.active { background: linear-gradient(to right, #ec4899, #9333ea); border-color: transparent; color: #fff; }
     .tab-btn.active-cyan { background: linear-gradient(to right, #06b6d4, #2563eb); border-color: transparent; color: #fff; }
+    /* Category */
+    .category { margin-bottom: 2.5rem; }
+    .cat-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .cat-emoji { font-size: 1.5rem; }
+    .cat-name { font-size: 1.05rem; font-weight: 700; color: #fff; flex: 1; }
+    .cat-count { background: rgba(34,211,238,0.15); color: #22d3ee; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 9999px; }
+    /* Channel cards */
+    .channels { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .channel {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 0.4rem 0.6rem;
+      width: 84px;
+      transition: all 0.2s;
+    }
+    .channel:hover {
+      background: rgba(34,211,238,0.07);
+      border-color: rgba(34,211,238,0.3);
+      transform: translateY(-2px);
+    }
+    .channel img {
+      height: 2rem;
+      width: 3.5rem;
+      object-fit: contain;
+    }
+    .ch-name {
+      font-size: 0.57rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .ch-num {
+      font-size: 0.5rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .channel.highlight {
+      background: rgba(34,211,238,0.08);
+      border-color: rgba(34,211,238,0.35);
+    }
+    .channel.highlight:hover { border-color: rgba(34,211,238,0.6); background: rgba(34,211,238,0.13); }
+    .channel.highlight .ch-name { color: #22d3ee; font-weight: 600; }
+    .channel.highlight-pink {
+      background: rgba(244,114,182,0.06);
+      border-color: rgba(244,114,182,0.28);
+    }
+    .channel.highlight-pink:hover { border-color: rgba(244,114,182,0.55); background: rgba(244,114,182,0.1); }
+    .channel.highlight-pink .ch-name { color: #f9a8d4; font-weight: 600; }
+    .ch-placeholder {
+      height: 2rem;
+      width: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border-radius: 0.35rem;
+      font-size: 1.1rem;
+    }
     footer { text-align: center; padding: 2rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.06); }
-    @media (max-width: 600px) { .page-title h1 { font-size: 1.75rem; } }
+    @media (max-width: 600px) { .page-title h1 { font-size: 1.75rem; } .channel { width: 76px; } }
   </style>
 </head>
 <body>
@@ -45,9 +99,7 @@
     <div style="text-align:center; margin-bottom:1.5rem;">
       <span class="badge"><img src="/logos/dgo.png" alt="DGO" style="height:1.1rem;width:auto;"> Partner oficial DGO &amp; GigaredPlay</span>
     </div>
-    <div class="page-title">
-      <h1>Grilla de <span>Canales</span></h1>
-    </div>
+    <div class="page-title"><h1>Grilla de <span>Canales</span></h1></div>
     <p class="subtitle">Canales disponibles según el servicio contratado. El catálogo puede variar.</p>
 
     <div class="tab-nav">
@@ -59,237 +111,300 @@
       </button>
     </div>
 
-    <!-- ── DGO ── -->
+    <!-- ══ DGO ══ -->
     <div id="tab-dgo">
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🏆</span>
-          <span class="cat-name">Fútbol Argentino Premium</span>
-          <span class="cat-count">2</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🏆</span><span class="cat-name">Fútbol Argentino Premium</span><span class="cat-count">2</span></div>
         <div class="channels">
-          <span class="channel highlight">ESPN Premium</span>
-          <span class="channel highlight">TNT Sports</span>
+          <div class="channel highlight"><img src="/canales/l200.svg" alt="ESPN Premium"><span class="ch-name">ESPN Premium</span></div>
+          <div class="channel highlight"><img src="/canales/l201.png" alt="TNT Sports"><span class="ch-name">TNT Sports</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">⚽</span>
-          <span class="cat-name">Deportes</span>
-          <span class="cat-count">14</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">⚽</span><span class="cat-name">Deportes</span><span class="cat-count">14</span></div>
         <div class="channels">
-          <span class="channel">DEPORTV</span><span class="channel">DSPORTS +</span><span class="channel">DSPORTS 2</span><span class="channel">Dsports Radio</span><span class="channel">TYC SPORT INTER</span><span class="channel">ESPN</span><span class="channel">ESPN 2</span><span class="channel">ESPN 3</span><span class="channel">ESPN 4</span><span class="channel">ESPN EXTRA</span><span class="channel">FOX SPORTS</span><span class="channel">FOX SPORTS 2</span><span class="channel">FOX SPORTS 3</span><span class="channel">GOLF CHANNEL</span>
+          <div class="channel"><img src="/canales/l0.png" alt="DEPORTV"><span class="ch-name">DEPORTV</span></div>
+          <div class="channel"><img src="/canales/l1.png" alt="DSPORTS +"><span class="ch-name">DSPORTS +</span></div>
+          <div class="channel"><img src="/canales/l2.png" alt="DSPORTS 2"><span class="ch-name">DSPORTS 2</span></div>
+          <div class="channel"><img src="/canales/l3.png" alt="Dsports Radio"><span class="ch-name">Dsports Radio</span></div>
+          <div class="channel"><img src="/canales/l27.png" alt="TYC SPORT INTER"><span class="ch-name">TYC SPORT INTER</span></div>
+          <div class="channel"><img src="/canales/l28.png" alt="ESPN"><span class="ch-name">ESPN</span></div>
+          <div class="channel"><img src="/canales/l29.png" alt="ESPN 2"><span class="ch-name">ESPN 2</span></div>
+          <div class="channel"><img src="/canales/l30.png" alt="ESPN 3"><span class="ch-name">ESPN 3</span></div>
+          <div class="channel"><img src="/canales/l31.png" alt="ESPN 4"><span class="ch-name">ESPN 4</span></div>
+          <div class="channel"><img src="/canales/l32.png" alt="ESPN EXTRA"><span class="ch-name">ESPN EXTRA</span></div>
+          <div class="channel"><img src="/canales/l33.png" alt="FOX SPORTS"><span class="ch-name">FOX SPORTS</span></div>
+          <div class="channel"><img src="/canales/l34.png" alt="FOX SPORTS 2"><span class="ch-name">FOX SPORTS 2</span></div>
+          <div class="channel"><img src="/canales/l35.png" alt="FOX SPORTS 3"><span class="ch-name">FOX SPORTS 3</span></div>
+          <div class="channel"><img src="/canales/l36.png" alt="GOLF CHANNEL"><span class="ch-name">GOLF CHANNEL</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🇦🇷</span>
-          <span class="cat-name">Nacionales</span>
-          <span class="cat-count">11</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🇦🇷</span><span class="cat-name">Nacionales</span><span class="cat-count">11</span></div>
         <div class="channels">
-          <span class="channel">Canal America</span><span class="channel">El Nueve</span><span class="channel">El Trece</span><span class="channel">Encuentro</span><span class="channel">La TV Pública</span><span class="channel">Net TV</span><span class="channel">Telefe</span><span class="channel">Crónica</span><span class="channel">Ciudad Magazine</span><span class="channel">Volver</span><span class="channel">A24</span>
+          <div class="channel"><img src="/canales/l4.png" alt="Canal America"><span class="ch-name">Canal America</span></div>
+          <div class="channel"><img src="/canales/l5.png" alt="El Nueve"><span class="ch-name">El Nueve</span></div>
+          <div class="channel"><img src="/canales/l6.png" alt="El Trece"><span class="ch-name">El Trece</span></div>
+          <div class="channel"><img src="/canales/l7.png" alt="Encuentro"><span class="ch-name">Encuentro</span></div>
+          <div class="channel"><img src="/canales/l8.png" alt="La TV Pública"><span class="ch-name">La TV Pública</span></div>
+          <div class="channel"><img src="/canales/l9.png" alt="Net TV"><span class="ch-name">Net TV</span></div>
+          <div class="channel"><img src="/canales/l10.png" alt="Telefe"><span class="ch-name">Telefe</span></div>
+          <div class="channel"><img src="/canales/l37.png" alt="Crónica"><span class="ch-name">Crónica</span></div>
+          <div class="channel"><img src="/canales/l38.png" alt="Ciudad Magazine"><span class="ch-name">Ciudad Magazine</span></div>
+          <div class="channel"><img src="/canales/l39.png" alt="Volver"><span class="ch-name">Volver</span></div>
+          <div class="channel"><img src="/canales/l40.png" alt="A24"><span class="ch-name">A24</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🌎</span>
-          <span class="cat-name">Internacionales</span>
-          <span class="cat-count">6</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🌎</span><span class="cat-name">Internacionales</span><span class="cat-count">6</span></div>
         <div class="channels">
-          <span class="channel">CANAL 26</span><span class="channel">RAI</span><span class="channel">BLOOMBERG</span><span class="channel">CNN INTERNACIONAL</span><span class="channel">CNN ESPAÑOL</span><span class="channel">ANTENA 3</span>
+          <div class="channel"><img src="/canales/l11.png" alt="CANAL 26"><span class="ch-name">CANAL 26</span></div>
+          <div class="channel"><img src="/canales/l41.jpg" alt="RAI"><span class="ch-name">RAI</span></div>
+          <div class="channel"><img src="/canales/l42.png" alt="BLOOMBERG"><span class="ch-name">BLOOMBERG</span></div>
+          <div class="channel"><img src="/canales/l43.png" alt="CNN INTERNACIONAL"><span class="ch-name">CNN INTER.</span></div>
+          <div class="channel"><img src="/canales/l44.png" alt="CNN ESPAÑOL"><span class="ch-name">CNN ESPAÑOL</span></div>
+          <div class="channel"><img src="/canales/l45.png" alt="ANTENA 3"><span class="ch-name">ANTENA 3</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">📰</span>
-          <span class="cat-name">Noticias</span>
-          <span class="cat-count">15</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">📰</span><span class="cat-name">Noticias</span><span class="cat-count">15</span></div>
         <div class="channels">
-          <span class="channel">RCN Más</span><span class="channel">RCN Noticias</span><span class="channel">Defiance Channel</span><span class="channel">Argentina 12</span><span class="channel">C5N</span><span class="channel">DNEWS</span><span class="channel">La Nacion</span><span class="channel">Azteca Internacional</span><span class="channel">TN</span><span class="channel">La Nación+ HD</span><span class="channel">A24 HD</span><span class="channel">Crónica TV</span><span class="channel">BLOOMBERG TELEVISION</span><span class="channel">FOX News</span><span class="channel">TN Noticias</span>
+          <div class="channel"><img src="/canales/l12.png" alt="RCN Más"><span class="ch-name">RCN Más</span></div>
+          <div class="channel"><img src="/canales/l13.png" alt="RCN Noticias"><span class="ch-name">RCN Noticias</span></div>
+          <div class="channel"><img src="/canales/l14.png" alt="Defiance Channel"><span class="ch-name">Defiance Ch.</span></div>
+          <div class="channel"><img src="/canales/l15.jpg" alt="Argentina 12"><span class="ch-name">Argentina 12</span></div>
+          <div class="channel"><img src="/canales/l16.png" alt="C5N"><span class="ch-name">C5N</span></div>
+          <div class="channel"><img src="/canales/l17.png" alt="DNEWS"><span class="ch-name">DNEWS</span></div>
+          <div class="channel"><img src="/canales/l18.png" alt="La Nacion"><span class="ch-name">La Nacion</span></div>
+          <div class="channel"><img src="/canales/l46.png" alt="Azteca Internacional"><span class="ch-name">Azteca Inter.</span></div>
+          <div class="channel"><img src="/canales/l47.png" alt="TN"><span class="ch-name">TN</span></div>
+          <div class="channel"><img src="/canales/l48.png" alt="La Nación+ HD"><span class="ch-name">La Nación+</span></div>
+          <div class="channel"><img src="/canales/l49.png" alt="A24 HD"><span class="ch-name">A24 HD</span></div>
+          <div class="channel"><img src="/canales/l50.png" alt="Crónica TV"><span class="ch-name">Crónica TV</span></div>
+          <div class="channel"><img src="/canales/l51.png" alt="Bloomberg TV"><span class="ch-name">Bloomberg TV</span></div>
+          <div class="channel"><img src="/canales/l52.png" alt="FOX News"><span class="ch-name">FOX News</span></div>
+          <div class="channel"><img src="/canales/l53.png" alt="TN Noticias"><span class="ch-name">TN Noticias</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🎬</span>
-          <span class="cat-name">Películas y Series</span>
-          <span class="cat-count">25</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🎬</span><span class="cat-name">Películas y Series</span><span class="cat-count">25</span></div>
         <div class="channels">
-          <span class="channel">FreeTV Acción</span><span class="channel">FreeTV Drama</span><span class="channel">FreeTV Estelar</span><span class="channel">FreeTV Familia</span><span class="channel">FreeTV Hits</span><span class="channel">FreeTV Saber Más</span><span class="channel">FreeTV Terror</span><span class="channel">Sony Movies</span><span class="channel">Atres Series</span><span class="channel">Azteca Cinema</span><span class="channel">Azteca Clic</span><span class="channel">Azteca Corazón</span><span class="channel">AMC</span><span class="channel">WARNER CHANNEL</span><span class="channel">AXN</span><span class="channel">CINEMAX</span><span class="channel">FX</span><span class="channel">SONY CHANNEL</span><span class="channel">SPACE</span><span class="channel">STAR CHANNEL</span><span class="channel">CINECANAL</span><span class="channel">STUDIO UNIVERSAL</span><span class="channel">TNT</span><span class="channel">TNT SERIES</span><span class="channel">UNIVERSAL TV</span>
+          <div class="channel"><img src="/canales/l19.png" alt="FreeTV Acción"><span class="ch-name">FreeTV Acción</span></div>
+          <div class="channel"><img src="/canales/l20.png" alt="FreeTV Drama"><span class="ch-name">FreeTV Drama</span></div>
+          <div class="channel"><img src="/canales/l21.png" alt="FreeTV Estelar"><span class="ch-name">FreeTV Estelar</span></div>
+          <div class="channel"><img src="/canales/l22.png" alt="FreeTV Familia"><span class="ch-name">FreeTV Familia</span></div>
+          <div class="channel"><img src="/canales/l23.png" alt="FreeTV Hits"><span class="ch-name">FreeTV Hits</span></div>
+          <div class="channel"><img src="/canales/l24.png" alt="FreeTV Saber Más"><span class="ch-name">FreeTV Saber+</span></div>
+          <div class="channel"><img src="/canales/l25.png" alt="FreeTV Terror"><span class="ch-name">FreeTV Terror</span></div>
+          <div class="channel"><img src="/canales/l54.png" alt="Sony Movies"><span class="ch-name">Sony Movies</span></div>
+          <div class="channel"><img src="/canales/l55.png" alt="Atres Series"><span class="ch-name">Atres Series</span></div>
+          <div class="channel"><img src="/canales/l56.png" alt="Azteca Cinema"><span class="ch-name">Azteca Cinema</span></div>
+          <div class="channel"><img src="/canales/l57.png" alt="Azteca Clic"><span class="ch-name">Azteca Clic</span></div>
+          <div class="channel"><img src="/canales/l58.png" alt="Azteca Corazón"><span class="ch-name">Azteca Corazón</span></div>
+          <div class="channel"><img src="/canales/l59.png" alt="AMC"><span class="ch-name">AMC</span></div>
+          <div class="channel"><img src="/canales/l60.png" alt="WARNER CHANNEL"><span class="ch-name">WARNER CH.</span></div>
+          <div class="channel"><img src="/canales/l61.png" alt="AXN"><span class="ch-name">AXN</span></div>
+          <div class="channel"><img src="/canales/l62.png" alt="CINEMAX"><span class="ch-name">CINEMAX</span></div>
+          <div class="channel"><img src="/canales/l63.png" alt="FX"><span class="ch-name">FX</span></div>
+          <div class="channel"><img src="/canales/l64.png" alt="SONY CHANNEL"><span class="ch-name">SONY CH.</span></div>
+          <div class="channel"><img src="/canales/l65.png" alt="SPACE"><span class="ch-name">SPACE</span></div>
+          <div class="channel"><img src="/canales/l66.png" alt="STAR CHANNEL"><span class="ch-name">STAR CH.</span></div>
+          <div class="channel"><img src="/canales/l67.png" alt="CINECANAL"><span class="ch-name">CINECANAL</span></div>
+          <div class="channel"><img src="/canales/l68.png" alt="STUDIO UNIVERSAL"><span class="ch-name">STUDIO UNIV.</span></div>
+          <div class="channel"><img src="/canales/l69.png" alt="TNT"><span class="ch-name">TNT</span></div>
+          <div class="channel"><img src="/canales/l70.png" alt="TNT SERIES"><span class="ch-name">TNT SERIES</span></div>
+          <div class="channel"><img src="/canales/l71.png" alt="UNIVERSAL TV"><span class="ch-name">UNIVERSAL TV</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">✨</span>
-          <span class="cat-name">Variedades</span>
-          <span class="cat-count">20</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">✨</span><span class="cat-name">Variedades</span><span class="cat-count">20</span></div>
         <div class="channels">
-          <span class="channel">KZO</span><span class="channel">AMC Series</span><span class="channel">CANAL 9</span><span class="channel">DSHOW</span><span class="channel">Alacocina TV</span><span class="channel">TLC</span><span class="channel">EL GOURMET</span><span class="channel">TNT Novelas</span><span class="channel">LIFETIME</span><span class="channel">HGTV</span><span class="channel">DISCOVERY TURBO</span><span class="channel">COMEDY CENTRAL</span><span class="channel">USA</span><span class="channel">ADULT SWIM</span><span class="channel">DISCOVERY HOME &amp; HEALTH</span><span class="channel">TELEMUNDO</span><span class="channel">E! ENTERTAINMENT</span><span class="channel">HOLA TV</span><span class="channel">A&amp;E</span><span class="channel">FOOD NETWORK</span>
+          <div class="channel"><img src="/canales/l26.png" alt="KZO"><span class="ch-name">KZO</span></div>
+          <div class="channel"><img src="/canales/l72.jpg" alt="AMC Series"><span class="ch-name">AMC Series</span></div>
+          <div class="channel"><img src="/canales/l73.png" alt="CANAL 9"><span class="ch-name">CANAL 9</span></div>
+          <div class="channel"><img src="/canales/l74.png" alt="DSHOW"><span class="ch-name">DSHOW</span></div>
+          <div class="channel"><img src="/canales/l75.png" alt="Alacocina TV"><span class="ch-name">Alacocina TV</span></div>
+          <div class="channel"><img src="/canales/l76.png" alt="TLC"><span class="ch-name">TLC</span></div>
+          <div class="channel"><img src="/canales/l77.png" alt="EL GOURMET"><span class="ch-name">EL GOURMET</span></div>
+          <div class="channel"><img src="/canales/l78.png" alt="TNT Novelas"><span class="ch-name">TNT Novelas</span></div>
+          <div class="channel"><img src="/canales/l79.png" alt="LIFETIME"><span class="ch-name">LIFETIME</span></div>
+          <div class="channel"><img src="/canales/l80.png" alt="HGTV"><span class="ch-name">HGTV</span></div>
+          <div class="channel"><img src="/canales/l81.png" alt="DISCOVERY TURBO"><span class="ch-name">DISC. TURBO</span></div>
+          <div class="channel"><img src="/canales/l82.png" alt="COMEDY CENTRAL"><span class="ch-name">COMEDY CENTRAL</span></div>
+          <div class="channel"><img src="/canales/l83.png" alt="USA"><span class="ch-name">USA</span></div>
+          <div class="channel"><img src="/canales/l84.png" alt="ADULT SWIM"><span class="ch-name">ADULT SWIM</span></div>
+          <div class="channel"><img src="/canales/l85.png" alt="DISC. HOME &amp; HEALTH"><span class="ch-name">DISC. H&amp;H</span></div>
+          <div class="channel"><img src="/canales/l86.png" alt="TELEMUNDO"><span class="ch-name">TELEMUNDO</span></div>
+          <div class="channel"><img src="/canales/l87.png" alt="E! ENTERTAINMENT"><span class="ch-name">E! ENTERT.</span></div>
+          <div class="channel"><img src="/canales/l88.png" alt="HOLA TV"><span class="ch-name">HOLA TV</span></div>
+          <div class="channel"><img src="/canales/l89.png" alt="A&amp;E"><span class="ch-name">A&amp;E</span></div>
+          <div class="channel"><img src="/canales/l90.png" alt="FOOD NETWORK"><span class="ch-name">FOOD NETWORK</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">📚</span>
-          <span class="cat-name">Cultura y Documental</span>
-          <span class="cat-count">10</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">📚</span><span class="cat-name">Cultura y Documental</span><span class="cat-count">10</span></div>
         <div class="channels">
-          <span class="channel">Discovery World HD</span><span class="channel">HISTORY 2</span><span class="channel">DISCOVERY WORLD</span><span class="channel">DISCOVERY THEATER</span><span class="channel">DISCOVERY ID</span><span class="channel">Canal (á)</span><span class="channel">DISCOVERY CHANNEL</span><span class="channel">HISTORY CHANNEL</span><span class="channel">NATIONAL GEOGRAPHIC</span><span class="channel">ANIMAL PLANET</span>
+          <div class="channel"><img src="/canales/l91.png" alt="Discovery World HD"><span class="ch-name">Discovery World HD</span></div>
+          <div class="channel"><img src="/canales/l92.png" alt="HISTORY 2"><span class="ch-name">HISTORY 2</span></div>
+          <div class="channel"><img src="/canales/l93.png" alt="DISCOVERY WORLD"><span class="ch-name">DISC. WORLD</span></div>
+          <div class="channel"><img src="/canales/l94.png" alt="DISCOVERY THEATER"><span class="ch-name">DISC. THEATER</span></div>
+          <div class="channel"><img src="/canales/l95.png" alt="DISCOVERY ID"><span class="ch-name">DISCOVERY ID</span></div>
+          <div class="channel"><img src="/canales/l96.png" alt="Canal (á)"><span class="ch-name">Canal (á)</span></div>
+          <div class="channel"><img src="/canales/l97.png" alt="DISCOVERY CHANNEL"><span class="ch-name">DISCOVERY</span></div>
+          <div class="channel"><img src="/canales/l98.png" alt="HISTORY CHANNEL"><span class="ch-name">HISTORY</span></div>
+          <div class="channel"><img src="/canales/l99.png" alt="NATIONAL GEOGRAPHIC"><span class="ch-name">NAT GEO</span></div>
+          <div class="channel"><img src="/canales/l100.png" alt="ANIMAL PLANET"><span class="ch-name">ANIMAL PLANET</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🧒</span>
-          <span class="cat-name">Infantiles</span>
-          <span class="cat-count">9</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🧒</span><span class="cat-name">Infantiles</span><span class="cat-count">9</span></div>
         <div class="channels">
-          <span class="channel">Plim Plim</span><span class="channel">Nickelodeon</span><span class="channel">Nick Jr.</span><span class="channel">BABY TV</span><span class="channel">CARTOON NETWORK</span><span class="channel">DISNEY JUNIOR</span><span class="channel">CARTOONITO</span><span class="channel">DISCOVERY KIDS</span><span class="channel">DISNEY CHANNEL</span>
+          <div class="channel"><img src="/canales/l101.png" alt="Plim Plim"><span class="ch-name">Plim Plim</span></div>
+          <div class="channel"><img src="/canales/l102.png" alt="Nickelodeon"><span class="ch-name">Nickelodeon</span></div>
+          <div class="channel"><img src="/canales/l103.png" alt="Nick Jr."><span class="ch-name">Nick Jr.</span></div>
+          <div class="channel"><img src="/canales/l104.png" alt="BABY TV"><span class="ch-name">BABY TV</span></div>
+          <div class="channel"><img src="/canales/l105.png" alt="CARTOON NETWORK"><span class="ch-name">CARTOON NET.</span></div>
+          <div class="channel"><img src="/canales/l106.png" alt="DISNEY JUNIOR"><span class="ch-name">DISNEY JUNIOR</span></div>
+          <div class="channel"><img src="/canales/l107.png" alt="CARTOONITO"><span class="ch-name">CARTOONITO</span></div>
+          <div class="channel"><img src="/canales/l108.png" alt="DISCOVERY KIDS"><span class="ch-name">DISC. KIDS</span></div>
+          <div class="channel"><img src="/canales/l109.png" alt="DISNEY CHANNEL"><span class="ch-name">DISNEY CH.</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header">
-          <span class="cat-emoji">🎵</span>
-          <span class="cat-name">Shows y Música</span>
-          <span class="cat-count">2</span>
-        </div>
+        <div class="cat-header"><span class="cat-emoji">🎵</span><span class="cat-name">Shows y Música</span><span class="cat-count">2</span></div>
         <div class="channels">
-          <span class="channel">Quiero Música En Mi Idioma</span><span class="channel">MTV</span>
+          <div class="channel"><img src="/canales/l110.png" alt="Quiero Música"><span class="ch-name">Quiero Música</span></div>
+          <div class="channel"><img src="/canales/l111.png" alt="MTV"><span class="ch-name">MTV</span></div>
         </div>
       </div>
 
     </div>
 
-    <!-- ── GigaredPlay ── -->
+    <!-- ══ GigaredPlay ══ -->
     <div id="tab-gigared" style="display:none">
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">🇦🇷</span><span class="cat-name">Nacionales</span><span class="cat-count">11</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>América · 100</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Telefe · 101</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>TV Pública · 106</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>El Nueve · 108</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>LN+ · 111</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>C5N · 112</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Crónica · 113</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Canal 26 · 114</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>A24 · 115</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>CNN Español · 116</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Net TV · 117</span></div>
+          <div class="channel"><img src="/canales/l4.png" alt="América"><span class="ch-name">América</span><span class="ch-num">100</span></div>
+          <div class="channel"><img src="/canales/l10.png" alt="Telefe"><span class="ch-name">Telefe</span><span class="ch-num">101</span></div>
+          <div class="channel"><img src="/canales/l8.png" alt="TV Pública"><span class="ch-name">TV Pública</span><span class="ch-num">106</span></div>
+          <div class="channel"><img src="/canales/l5.png" alt="El Nueve"><span class="ch-name">El Nueve</span><span class="ch-num">108</span></div>
+          <div class="channel"><img src="/canales/l48.png" alt="LN+"><span class="ch-name">LN+</span><span class="ch-num">111</span></div>
+          <div class="channel"><img src="/canales/l16.png" alt="C5N"><span class="ch-name">C5N</span><span class="ch-num">112</span></div>
+          <div class="channel"><img src="/canales/l37.png" alt="Crónica"><span class="ch-name">Crónica</span><span class="ch-num">113</span></div>
+          <div class="channel"><img src="/canales/l11.png" alt="Canal 26"><span class="ch-name">Canal 26</span><span class="ch-num">114</span></div>
+          <div class="channel"><img src="/canales/l40.png" alt="A24"><span class="ch-name">A24</span><span class="ch-num">115</span></div>
+          <div class="channel"><img src="/canales/l44.png" alt="CNN Español"><span class="ch-name">CNN Español</span><span class="ch-num">116</span></div>
+          <div class="channel"><img src="/canales/l9.png" alt="Net TV"><span class="ch-name">Net TV</span><span class="ch-num">117</span></div>
         </div>
       </div>
 
       <div class="category">
-        <div class="cat-header"><span class="cat-emoji">⚽</span><span class="cat-name">Deportes <span style="font-size:0.7rem;color:#f472b6;font-weight:700;padding:0.2rem 0.5rem;background:rgba(244,114,182,0.15);border-radius:9999px;margin-left:0.5rem;">Pack Fútbol</span></span><span class="cat-count">11</span></div>
+        <div class="cat-header"><span class="cat-emoji">⚽</span><span class="cat-name">Deportes <span style="font-size:0.65rem;color:#f472b6;font-weight:700;padding:0.15rem 0.5rem;background:rgba(244,114,182,0.15);border-radius:9999px;margin-left:0.4rem;">Pack Fútbol</span></span><span class="cat-count">11</span></div>
         <div class="channels">
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>DEPORTV · 200</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>TyC Sports · 201</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>ESPN · 202</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>ESPN 2 · 203</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>ESPN 3 · 204</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>ESPN 4 · 205</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>FOX SPORTS · 206</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>FOX SPORTS 2 · 207</span></div>
-          <div class="channel highlight"><span style="font-size:1.4rem">⚽</span><span>FOX SPORTS 3 · 208</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Aeronews · 209</span></div>
-          <div class="channel"><span style="font-size:1.4rem">📺</span><span>Disc. Turbo · 211</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l0.png" alt="DEPORTV"><span class="ch-name">DEPORTV</span><span class="ch-num">200</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l27.png" alt="TyC Sports"><span class="ch-name">TyC Sports</span><span class="ch-num">201</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l28.png" alt="ESPN"><span class="ch-name">ESPN</span><span class="ch-num">202</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l29.png" alt="ESPN 2"><span class="ch-name">ESPN 2</span><span class="ch-num">203</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l30.png" alt="ESPN 3"><span class="ch-name">ESPN 3</span><span class="ch-num">204</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l31.png" alt="ESPN 4"><span class="ch-name">ESPN 4</span><span class="ch-num">205</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l33.png" alt="FOX SPORTS"><span class="ch-name">FOX SPORTS</span><span class="ch-num">206</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l34.png" alt="FOX SPORTS 2"><span class="ch-name">FOX SPORTS 2</span><span class="ch-num">207</span></div>
+          <div class="channel highlight-pink"><img src="/canales/l35.png" alt="FOX SPORTS 3"><span class="ch-name">FOX SPORTS 3</span><span class="ch-num">208</span></div>
+          <div class="channel"><div class="ch-placeholder">✈️</div><span class="ch-name">Aeronews</span><span class="ch-num">209</span></div>
+          <div class="channel"><img src="/canales/l81.png" alt="Disc. Turbo"><span class="ch-name">Disc. Turbo</span><span class="ch-num">211</span></div>
         </div>
       </div>
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">🧒</span><span class="cat-name">Infantiles</span><span class="cat-count">7</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Paka Paka · 300</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Disney Channel · 301</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Disney Junior · 302</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Nickelodeon · 303</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Discovery Kids · 304</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Boomerang · 305</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎮</span><span>Cartoon Network · 307</span></div>
+          <div class="channel"><div class="ch-placeholder">🎨</div><span class="ch-name">Paka Paka</span><span class="ch-num">300</span></div>
+          <div class="channel"><img src="/canales/l109.png" alt="Disney Channel"><span class="ch-name">Disney Ch.</span><span class="ch-num">301</span></div>
+          <div class="channel"><img src="/canales/l106.png" alt="Disney Junior"><span class="ch-name">Disney Junior</span><span class="ch-num">302</span></div>
+          <div class="channel"><img src="/canales/l102.png" alt="Nickelodeon"><span class="ch-name">Nickelodeon</span><span class="ch-num">303</span></div>
+          <div class="channel"><img src="/canales/l108.png" alt="Discovery Kids"><span class="ch-name">Disc. Kids</span><span class="ch-num">304</span></div>
+          <div class="channel"><div class="ch-placeholder">🎡</div><span class="ch-name">Boomerang</span><span class="ch-num">305</span></div>
+          <div class="channel"><img src="/canales/l105.png" alt="Cartoon Network"><span class="ch-name">Cartoon Net.</span><span class="ch-num">307</span></div>
         </div>
       </div>
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">🎬</span><span class="cat-name">Cine y Series</span><span class="cat-count">15</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>CineO · 400</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>CINECANAL · 402</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>TNT · 403</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>FX · 404</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Star Channel · 405</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Sony Channel · 406</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Universal · 408</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>AXN · 409</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Studio Universal · 410</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>A&amp;E · 411</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>USA Network · 413</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>AMC · 415</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Golden · 416</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>Sony Movies · 417</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎬</span><span>AMC Series · 605</span></div>
+          <div class="channel"><div class="ch-placeholder">🎬</div><span class="ch-name">CineO</span><span class="ch-num">400</span></div>
+          <div class="channel"><img src="/canales/l67.png" alt="CINECANAL"><span class="ch-name">CINECANAL</span><span class="ch-num">402</span></div>
+          <div class="channel"><img src="/canales/l69.png" alt="TNT"><span class="ch-name">TNT</span><span class="ch-num">403</span></div>
+          <div class="channel"><img src="/canales/l63.png" alt="FX"><span class="ch-name">FX</span><span class="ch-num">404</span></div>
+          <div class="channel"><img src="/canales/l66.png" alt="Star Channel"><span class="ch-name">Star Channel</span><span class="ch-num">405</span></div>
+          <div class="channel"><img src="/canales/l64.png" alt="Sony Channel"><span class="ch-name">Sony Channel</span><span class="ch-num">406</span></div>
+          <div class="channel"><img src="/canales/l71.png" alt="Universal"><span class="ch-name">Universal</span><span class="ch-num">408</span></div>
+          <div class="channel"><img src="/canales/l61.png" alt="AXN"><span class="ch-name">AXN</span><span class="ch-num">409</span></div>
+          <div class="channel"><img src="/canales/l68.png" alt="Studio Universal"><span class="ch-name">Studio Univ.</span><span class="ch-num">410</span></div>
+          <div class="channel"><img src="/canales/l89.png" alt="A&amp;E"><span class="ch-name">A&amp;E</span><span class="ch-num">411</span></div>
+          <div class="channel"><img src="/canales/l83.png" alt="USA Network"><span class="ch-name">USA Network</span><span class="ch-num">413</span></div>
+          <div class="channel"><img src="/canales/l59.png" alt="AMC"><span class="ch-name">AMC</span><span class="ch-num">415</span></div>
+          <div class="channel"><div class="ch-placeholder">🎞️</div><span class="ch-name">Golden</span><span class="ch-num">416</span></div>
+          <div class="channel"><img src="/canales/l54.png" alt="Sony Movies"><span class="ch-name">Sony Movies</span><span class="ch-num">417</span></div>
+          <div class="channel"><img src="/canales/l72.jpg" alt="AMC Series"><span class="ch-name">AMC Series</span><span class="ch-num">605</span></div>
         </div>
       </div>
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">✨</span><span class="cat-name">Entretenimiento y Variedades</span><span class="cat-count">16</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>G Plus · 419</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Discovery ID · 420</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Comedy Central · 422</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Discovery Edge · 423</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Cinemax · 426</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Cine Plus · 427</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>TLN Novelas · 430</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>El Gourmet · 601</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>E! · 603</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>H&amp;H · 604</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>TLC · 606</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Love Nature · 607</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>UNIFE · 608</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Science · 614</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>HGTV · 623</span></div>
-          <div class="channel"><span style="font-size:1.4rem">✨</span><span>Film &amp; Arts · 627</span></div>
+          <div class="channel"><div class="ch-placeholder">📺</div><span class="ch-name">G Plus</span><span class="ch-num">419</span></div>
+          <div class="channel"><img src="/canales/l95.png" alt="Discovery ID"><span class="ch-name">Discovery ID</span><span class="ch-num">420</span></div>
+          <div class="channel"><img src="/canales/l82.png" alt="Comedy Central"><span class="ch-name">Comedy Central</span><span class="ch-num">422</span></div>
+          <div class="channel"><div class="ch-placeholder">🔎</div><span class="ch-name">Disc. Edge</span><span class="ch-num">423</span></div>
+          <div class="channel"><img src="/canales/l62.png" alt="Cinemax"><span class="ch-name">Cinemax</span><span class="ch-num">426</span></div>
+          <div class="channel"><div class="ch-placeholder">🎥</div><span class="ch-name">Cine Plus</span><span class="ch-num">427</span></div>
+          <div class="channel"><div class="ch-placeholder">💜</div><span class="ch-name">TLN Novelas</span><span class="ch-num">430</span></div>
+          <div class="channel"><img src="/canales/l77.png" alt="El Gourmet"><span class="ch-name">El Gourmet</span><span class="ch-num">601</span></div>
+          <div class="channel"><img src="/canales/l87.png" alt="E!"><span class="ch-name">E!</span><span class="ch-num">603</span></div>
+          <div class="channel"><img src="/canales/l85.png" alt="H&amp;H"><span class="ch-name">H&amp;H</span><span class="ch-num">604</span></div>
+          <div class="channel"><img src="/canales/l76.png" alt="TLC"><span class="ch-name">TLC</span><span class="ch-num">606</span></div>
+          <div class="channel"><div class="ch-placeholder">🌿</div><span class="ch-name">Love Nature</span><span class="ch-num">607</span></div>
+          <div class="channel"><div class="ch-placeholder">📡</div><span class="ch-name">UNIFE</span><span class="ch-num">608</span></div>
+          <div class="channel"><div class="ch-placeholder">🔬</div><span class="ch-name">Science</span><span class="ch-num">614</span></div>
+          <div class="channel"><img src="/canales/l80.png" alt="HGTV"><span class="ch-name">HGTV</span><span class="ch-num">623</span></div>
+          <div class="channel"><div class="ch-placeholder">🎭</div><span class="ch-name">Film &amp; Arts</span><span class="ch-num">627</span></div>
         </div>
       </div>
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">📚</span><span class="cat-name">Documentales</span><span class="cat-count">5</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">🔬</span><span>Nat Geo · 620</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🔬</span><span>Discovery · 621</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🔬</span><span>Animal Planet · 622</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🔬</span><span>History · 624</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🔬</span><span>World · 630</span></div>
+          <div class="channel"><img src="/canales/l99.png" alt="Nat Geo"><span class="ch-name">Nat Geo</span><span class="ch-num">620</span></div>
+          <div class="channel"><img src="/canales/l97.png" alt="Discovery"><span class="ch-name">Discovery</span><span class="ch-num">621</span></div>
+          <div class="channel"><img src="/canales/l100.png" alt="Animal Planet"><span class="ch-name">Animal Planet</span><span class="ch-num">622</span></div>
+          <div class="channel"><img src="/canales/l98.png" alt="History"><span class="ch-name">History</span><span class="ch-num">624</span></div>
+          <div class="channel"><div class="ch-placeholder">🌍</div><span class="ch-name">World</span><span class="ch-num">630</span></div>
         </div>
       </div>
 
       <div class="category">
         <div class="cat-header"><span class="cat-emoji">🌍</span><span class="cat-name">Internacional y Música</span><span class="cat-count">8</span></div>
         <div class="channels">
-          <div class="channel"><span style="font-size:1.4rem">🌍</span><span>RAI · 702</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🌍</span><span>TVE · 704</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🌍</span><span>24 Horas · 705</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎵</span><span>MTV · 801</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎵</span><span>CM · 802</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎵</span><span>Allegro · 803</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎵</span><span>Telehit Música · 805</span></div>
-          <div class="channel"><span style="font-size:1.4rem">🎵</span><span>Telecanal Plus · 806</span></div>
+          <div class="channel"><img src="/canales/l41.jpg" alt="RAI"><span class="ch-name">RAI</span><span class="ch-num">702</span></div>
+          <div class="channel"><div class="ch-placeholder">🇪🇸</div><span class="ch-name">TVE</span><span class="ch-num">704</span></div>
+          <div class="channel"><div class="ch-placeholder">📺</div><span class="ch-name">24 Horas</span><span class="ch-num">705</span></div>
+          <div class="channel"><img src="/canales/l111.png" alt="MTV"><span class="ch-name">MTV</span><span class="ch-num">801</span></div>
+          <div class="channel"><div class="ch-placeholder">🎵</div><span class="ch-name">CM</span><span class="ch-num">802</span></div>
+          <div class="channel"><div class="ch-placeholder">🎼</div><span class="ch-name">Allegro</span><span class="ch-num">803</span></div>
+          <div class="channel"><div class="ch-placeholder">🎤</div><span class="ch-name">Telehit Música</span><span class="ch-num">805</span></div>
+          <div class="channel"><div class="ch-placeholder">📺</div><span class="ch-name">Telecanal+</span><span class="ch-num">806</span></div>
         </div>
       </div>
 
