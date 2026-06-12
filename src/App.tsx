@@ -54,62 +54,55 @@ const HeroCanvas = () => {
         vec2 p = vec2((uv.x*2.0-1.0)*asp, uv.y*2.0-1.0);
         vec2 m = vec2((iMouse.x/iRes.x*2.0-1.0)*asp, 1.0-iMouse.y/iRes.y*2.0);
 
-        // dark base matching plans section
-        vec3 col = vec3(0.04, 0.04, 0.04);
+        vec3 col = vec3(0.02, 0.03, 0.06);
 
-        // very subtle ambient mouse glow
         float md = length(p - m);
-        col += vec3(0.0, 0.08, 0.22) * exp(-md*md*4.0) * 0.18;
+        col += vec3(0.0, 0.06, 0.18) * exp(-md*md*3.0) * 0.2;
 
-        for(int i=0; i<55; i++){
-          float fi = float(i)/54.0;
+        for(int i=0; i<12; i++){
+          float fi = float(i)/11.0;
           float seed = fi*7.39+1.0;
-          float speed = 0.055 + hash(fi*3.7)*0.065;
+
+          float speed = 0.28 + hash(fi*3.7)*0.35;
           float t = iTime * speed;
 
-          float yc = fi*2.0-1.0;
+          float yc = (fi*2.2-1.1) + (hash(fi*5.1)-0.5)*0.15;
           float x = p.x;
 
           float y = yc
-            + sin(x*1.6 + t + seed)        * 0.04
-            + sin(x*3.3 - t*1.2 + seed*2.0) * 0.016
-            + sin(x*7.1 + t*0.8 + seed*3.5) * 0.006;
+            + sin(x*1.2 + t + seed)         * 0.09
+            + sin(x*2.8 - t*1.3 + seed*2.0) * 0.045
+            + sin(x*5.5 + t*0.7 + seed*3.5) * 0.018;
 
-          // subtle mouse pull
-          float mxInfl = exp(-(m.x-x)*(m.x-x)*1.2);
+          float mxInfl = exp(-(m.x-x)*(m.x-x)*0.8);
           float yAtMx = yc
-            + sin(m.x*1.6 + t + seed)        * 0.04
-            + sin(m.x*3.3 - t*1.2 + seed*2.0) * 0.016
-            + sin(m.x*7.1 + t*0.8 + seed*3.5) * 0.006;
-          y += (m.y - yAtMx) * mxInfl * 0.22;
+            + sin(m.x*1.2 + t + seed)         * 0.09
+            + sin(m.x*2.8 - t*1.3 + seed*2.0) * 0.045
+            + sin(m.x*5.5 + t*0.7 + seed*3.5) * 0.018;
+          y += (m.y - yAtMx) * mxInfl * 0.18;
 
           float dist = abs(p.y - y);
 
-          // hair-thin core only — no wide glow
-          float core  = 0.000045/(dist*dist+0.0000055);
-          float halo  = 0.00008/(dist*dist+0.00012);
-          float strand = min(core + halo, 0.9);
+          float core  = 0.00018/(dist*dist+0.000018);
+          float halo  = 0.0006/(dist*dist+0.0008);
+          float strand = min(core + halo * 0.5, 2.2);
 
-          // traveling pulse dimmer overall
-          float pspeed = 1.2 + hash(fi*1.9)*1.4;
-          float pulse = 0.38 + 0.62*pow(max(0.0,sin(x*2.0-t*pspeed+fi*6.28)),3.0);
+          float pspeed = 0.9 + hash(fi*1.9)*1.2;
+          float pulse = 0.3 + 0.7*pow(max(0.0,sin(x*2.5-t*pspeed*2.5+fi*6.28)),3.0);
           strand *= pulse;
 
-          // plans-section palette: deep cyan → blue
           float hv = hash(fi*2.3)*0.2;
           vec3 fc = mix(
-            vec3(0.05, 0.7+hv*0.2, 0.9),
-            vec3(0.1+hv*0.2, 0.3, 0.9),
-            fi*0.65+hv*0.25
+            vec3(0.05, 0.75+hv*0.2, 1.0),
+            vec3(0.1+hv*0.15, 0.25, 0.95),
+            fi*0.7+hv*0.2
           );
-          col += fc * strand * 0.85;
+          col += fc * strand * 0.7;
         }
 
-        // tiny cursor dot
-        col += vec3(0.1,0.5,1.0)*0.018/(md*md+0.018);
+        col += vec3(0.1,0.5,1.0)*0.015/(md*md+0.015);
 
-        // vignette keeps edges dark like plans section
-        float vig = 1.0 - dot(uv*2.0-1.0, uv*2.0-1.0)*0.35;
+        float vig = 1.0 - dot(uv*2.0-1.0, uv*2.0-1.0)*0.32;
         col *= vig;
 
         gl_FragColor = vec4(clamp(col,0.0,1.0),1.0);
