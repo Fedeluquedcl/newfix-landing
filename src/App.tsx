@@ -603,6 +603,110 @@ function DGOSection() {
           ))}
         </div>
 
+        {/* ── ADICIONALES ── */}
+        <div className="max-w-5xl mx-auto mt-14">
+          <div className="text-center mb-6">
+            <h3 className="text-lg font-bold text-white">Opcionales para sumar a tu plan</h3>
+            <p className="text-white/40 text-sm mt-1">Agregá cualquiera de estos servicios a tu suscripción DGO</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              {
+                name: 'Atresplayer',
+                price: '$9.300',
+                bg: 'from-red-900/40 to-red-800/20',
+                border: 'border-red-500/30',
+                logo: (
+                  <svg viewBox="0 0 60 40" className="h-8 w-auto mx-auto mb-3">
+                    <polygon points="30,4 54,36 6,36" fill="none" stroke="#e63946" strokeWidth="4" strokeLinejoin="round"/>
+                    <polygon points="30,14 46,36 14,36" fill="#e63946"/>
+                  </svg>
+                ),
+              },
+              {
+                name: 'Paramount+',
+                price: '$6.750',
+                bg: 'from-blue-900/40 to-blue-800/20',
+                border: 'border-blue-400/30',
+                logo: (
+                  <div className="text-center mb-3">
+                    <span className="text-2xl font-black text-blue-300 tracking-tight">P+</span>
+                  </div>
+                ),
+              },
+              {
+                name: 'Pack Fútbol',
+                price: '$20.970',
+                bg: 'from-green-900/40 to-emerald-800/20',
+                border: 'border-green-500/30',
+                logo: (
+                  <div className="text-center mb-3 flex items-center justify-center gap-1">
+                    <span className="text-xs font-black text-white bg-red-600 px-1.5 py-0.5 rounded">ESPN</span>
+                    <span className="text-xs font-black text-white bg-[#B2027A] px-1.5 py-0.5 rounded">TNT</span>
+                  </div>
+                ),
+              },
+              {
+                name: 'Universal+',
+                price: '$11.800',
+                bg: 'from-purple-900/40 to-purple-800/20',
+                border: 'border-purple-400/30',
+                logo: (
+                  <div className="text-center mb-3">
+                    <span className="text-xl font-black text-white tracking-widest border border-white/60 px-2 py-0.5 rounded">UNIVERSAL+</span>
+                  </div>
+                ),
+              },
+            ].map((addon) => (
+              <div
+                key={addon.name}
+                className={`relative flex flex-col items-center text-center rounded-xl border p-5 bg-gradient-to-b ${addon.bg} ${addon.border}`}
+              >
+                {addon.logo}
+                <p className="text-white/60 text-xs mb-1">{addon.name}</p>
+                <p className="text-2xl font-bold text-white">{addon.price}</p>
+                <p className="text-white/40 text-xs">/mes</p>
+                <a
+                  href={`https://wa.me/5491123241875?text=Hola!%20Quiero%20agregar%20${encodeURIComponent(addon.name)}%20a%20mi%20plan%20DGO`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-cyan-400 hover:text-cyan-300 text-xs font-semibold transition-colors"
+                >
+                  Consultar →
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── DISPOSITIVOS ── */}
+        <div className="max-w-4xl mx-auto mt-12 text-center">
+          <h3 className="text-lg font-bold text-white mb-1">Miralo cómo y cuando quieras</h3>
+          <p className="text-white/40 text-sm mb-6">Disponible en celular, smart TV y cualquier dispositivo con internet</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { label: 'Google Play',     icon: '▶', color: 'text-green-400' },
+              { label: 'App Store',       icon: '', color: 'text-white' },
+              { label: 'Web',             icon: '🌐', color: 'text-cyan-400' },
+              { label: 'Android TV',      icon: '📺', color: 'text-green-300' },
+              { label: 'Apple TV',        icon: '', color: 'text-white' },
+              { label: 'Roku',            icon: '📡', color: 'text-purple-400' },
+              { label: 'Samsung Smart TV',icon: '🖥', color: 'text-blue-400' },
+              { label: 'LG',              icon: '🖥', color: 'text-red-400' },
+              { label: 'Fire TV',         icon: '🔥', color: 'text-orange-400' },
+              { label: 'ELSYS',           icon: '📦', color: 'text-gray-400' },
+            ].map((device) => (
+              <div
+                key={device.label}
+                className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm"
+              >
+                <span className={device.color}>{device.icon}</span>
+                <span className="text-white/70 font-medium">{device.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Canales link */}
         <div className="text-center mt-10">
           <a
