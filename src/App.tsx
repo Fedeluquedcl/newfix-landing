@@ -192,8 +192,8 @@ const HOGAR_PLANS: NewFixPlanProps[] = [
     planName: '🚀 Fibra 800 Mbps',
     description: 'Máxima potencia con WiFi 6',
     speed: '800 Mbps',
-    price: '$XX.XXX',
-    priceNote: 'Precio sin impuesto: $XX.XXX',
+    price: '$34.000',
+    priceNote: 'Precio sin impuesto: $28.099',
     features: ['Tecnología XGPON', 'Router WiFi 6 Incluido', 'Instalación express'],
     buttonText: 'Contratar',
     buttonHref: 'https://forms.gle/uXXEkfX1bP393zuH8',
@@ -1009,7 +1009,7 @@ function App() {
       </section>
 
       {/* ── PLANES (toggle) ── */}
-      <section id="planes" className="pt-16 pb-4 bg-[#060d1f]">
+      <section id="planes" className="pt-20 pb-0 bg-[#060d1f]">
         <div className="container mx-auto px-6">
           <div className="flex justify-center mb-12">
             <div className="inline-flex rounded-2xl bg-white/5 border border-white/10 p-1.5 gap-1 flex-wrap justify-center">
@@ -1049,16 +1049,8 @@ function App() {
       </section>
 
       {activePlansTab === 'internet' && (
-        <div className="bg-[#060d1f] pb-20">
-          <div className="container mx-auto px-6 pt-12">
-            <div className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
-                ✦ Fibra óptica
-              </span>
-              <h2 className="text-4xl font-bold text-white">Planes de <span className="text-cyan-400">Internet</span></h2>
-            </div>
-            <NewFixPricingSection plans={HOGAR_PLANS} />
-          </div>
+        <div className="bg-[#060d1f]">
+          <NewFixPricingSection plans={HOGAR_PLANS} title={<>Planes de <span className="text-cyan-300">Internet</span></>} />
         </div>
       )}
       {activePlansTab === 'dgo' && <DGOSection />}

@@ -226,9 +226,9 @@ export const NewFixPricingSection = ({
   showBackground = true,
 }: NewFixPricingSectionProps) => {
   return (
-    <section id="planes" className="relative overflow-hidden min-h-screen flex flex-col justify-center py-24">
+    <section id="planes" className="relative overflow-hidden flex flex-col justify-center py-20">
       {/* Dark background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-transparent" />
 
       {/* WebGL animated canvas */}
       {showBackground && (
