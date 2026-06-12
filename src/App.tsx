@@ -532,10 +532,10 @@ function DGOSection() {
   };
 
   return (
-    <section id="dgo" className="py-20 bg-[#060d1f]">
+    <section id="dgo" className="pb-20 bg-[#060d1f]">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center pt-8 mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
             ✦ Internet + TV
           </span>
@@ -693,7 +693,7 @@ function GigaredSection() {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-10">
+      <div className="text-center pt-8 mb-8">
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/15 border border-pink-400/25 text-pink-300 text-xs font-semibold uppercase tracking-widest mb-5">
           ✦ Internet + TV cable
         </span>
@@ -1011,7 +1011,7 @@ function App() {
       {/* ── PLANES (toggle) ── */}
       <section id="planes" className="pt-20 pb-0 bg-[#060d1f]">
         <div className="container mx-auto px-6">
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-4">
             <div className="inline-flex rounded-2xl bg-white/5 border border-white/10 p-1.5 gap-1 flex-wrap justify-center">
               <button
                 onClick={() => setActivePlansTab('gigared')}
@@ -1055,7 +1055,7 @@ function App() {
       )}
       {activePlansTab === 'dgo' && <DGOSection />}
       {activePlansTab === 'gigared' && (
-        <div className="py-20 bg-[#060d1f]">
+        <div className="pb-20 bg-[#060d1f]">
           <div className="container mx-auto px-6">
             <GigaredSection />
           </div>
