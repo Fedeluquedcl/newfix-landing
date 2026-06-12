@@ -422,107 +422,64 @@ function SpeedTest() {
   );
 }
 
+type PlanCard = {
+  speed: string; router: string; price: string; sinImpuesto: string;
+  popular: boolean; features: string[]; includes: string[];
+};
+
 function DGOSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(2);
 
   const dgoTabs = [
-    { label: 'Ultra Lite', short: 'TV' },
-    { label: 'Ultra Lite + DSports + Prime Video', short: 'TV' },
-    { label: 'Full + DSports + Prime + ESPN + TNT Sports', short: 'FULL' },
+    { label: 'Lite',              desc: '30 canales · 2 pantallas' },
+    { label: 'Plus',              desc: 'DSPORTS · 30 canales · 2 pantallas' },
+    { label: 'Total',             desc: 'DSPORTS + Prime · 30 canales · 2 pantallas' },
+    { label: 'Full',              desc: 'DSPORTS + Prime · 80 canales · 4 pantallas' },
+    { label: '⚽ Fútbol Total',   desc: 'DSPORTS + Prime + ESPN + TNT · 80 canales · 4 pantallas' },
   ];
 
-  const dgoPlans = [
-    // Tab 0: Ultra Lite
-    [
-      {
-        speed: '300 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
-        includes: [] as string[],
-      },
-      {
-        speed: '500 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: true,
-        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
-        includes: [] as string[],
-      },
-      {
-        speed: '800 Mbps',
-        router: 'WiFi 6',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+30 canales en vivo', '2 pantallas en simultáneo'],
-        includes: [] as string[],
-      },
+  const dgoPlans: Record<number, PlanCard[]> = {
+    0: [
+      { speed:'300 Mbps', router:'Dual Band', price:'$38.600', sinImpuesto:'$31.900', popular:false,
+        features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
+      { speed:'500 Mbps', router:'Dual Band', price:'$42.600', sinImpuesto:'$35.207', popular:true,
+        features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$49.600', sinImpuesto:'$40.992', popular:false,
+        features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
     ],
-    // Tab 1: Ultra Lite + DSports + Prime Video
-    [
-      {
-        speed: '300 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
-        includes: ['DSports', 'Prime Video'],
-      },
-      {
-        speed: '500 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: true,
-        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
-        includes: ['DSports', 'Prime Video'],
-      },
-      {
-        speed: '800 Mbps',
-        router: 'WiFi 6',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+30 canales en vivo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', '2 pantallas en simultáneo'],
-        includes: ['DSports', 'Prime Video'],
-      },
+    1: [
+      { speed:'300 Mbps', router:'Dual Band', price:'$41.882', sinImpuesto:'$34.613', popular:false,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
+      { speed:'500 Mbps', router:'Dual Band', price:'$45.882', sinImpuesto:'$37.919', popular:true,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$52.882', sinImpuesto:'$43.704', popular:false,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
     ],
-    // Tab 2: Full
-    [
-      {
-        speed: '300 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
-        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
-      },
-      {
-        speed: '500 Mbps',
-        router: 'Dual Band',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: true,
-        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
-        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
-      },
-      {
-        speed: '800 Mbps',
-        router: 'WiFi 6',
-        price: '$XX.XXX',
-        sinImpuesto: '$XX.XXX',
-        popular: false,
-        features: ['+80 canales en vivo y +10.000 títulos VOD', '4 pantallas en simultáneo', 'DSports: Mundial, golf, tenis, NBA, MotoGP y más', 'Amazon Prime Video incluido', 'ESPN PREMIUM y TNT Sports'],
-        includes: ['DSports', 'Prime Video', 'ESPN', 'TNT Sports'],
-      },
+    2: [
+      { speed:'300 Mbps', router:'Dual Band', price:'$48.882', sinImpuesto:'$40.398', popular:false,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+      { speed:'500 Mbps', router:'Dual Band', price:'$53.882', sinImpuesto:'$44.530', popular:true,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$60.882', sinImpuesto:'$50.315', popular:false,
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
     ],
-  ];
+    3: [
+      { speed:'300 Mbps', router:'Dual Band', price:'$53.300', sinImpuesto:'$44.050', popular:false,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+      { speed:'500 Mbps', router:'Dual Band', price:'$57.300', sinImpuesto:'$47.355', popular:true,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$64.300', sinImpuesto:'$53.140', popular:false,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+    ],
+    4: [
+      { speed:'300 Mbps', router:'Dual Band', price:'$54.900', sinImpuesto:'$45.372', popular:false,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+      { speed:'500 Mbps', router:'Dual Band', price:'$58.900', sinImpuesto:'$48.677', popular:true,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$65.900', sinImpuesto:'$54.462', popular:false,
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+    ],
+  };
 
   const includeBadges: Record<string, { bg: string; text: string; label: string }> = {
     'DSports':     { bg: 'bg-blue-600',  text: 'text-white', label: 'D SPORTS' },
@@ -584,9 +541,9 @@ function DGOSection() {
               {/* DGO Logo badge */}
               <div className="flex items-center gap-1 mb-4">
                 <span className="text-2xl font-black text-orange-500">D</span>
-                <span className={`text-2xl font-black ${activeTab === 2 ? 'text-cyan-400' : 'text-cyan-300'}`}>GO</span>
-                <span className={`text-xs font-bold ml-1 px-1.5 py-0.5 rounded ${activeTab === 2 ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/10 text-white/70'}`}>
-                  {dgoTabs[activeTab].short}
+                <span className={`text-2xl font-black ${activeTab >= 3 ? 'text-cyan-400' : 'text-cyan-300'}`}>GO</span>
+                <span className={`text-xs font-bold ml-1 px-1.5 py-0.5 rounded ${activeTab >= 3 ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/10 text-white/70'}`}>
+                  {activeTab >= 3 ? 'FULL' : 'TV'}
                 </span>
               </div>
 
