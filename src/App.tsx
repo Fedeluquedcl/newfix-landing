@@ -2,6 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Clock, Shield, MapPin, Wifi, CheckCircle2, ChevronDown, Mail, Instagram, Facebook, Menu, X, Network, Globe, Zap } from 'lucide-react';
 import { NewFixPricingSection, type NewFixPlanProps } from '@/components/ui/animated-glassy-pricing';
 
+const useScrollAnimation = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+};
+
 // ── WebGL Fiber Optic Hero Canvas ──
 const HeroCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -44,38 +61,38 @@ const HeroCanvas = () => {
         float md = length(p - m);
         col += vec3(0.0, 0.08, 0.22) * exp(-md*md*4.0) * 0.18;
 
-        for(int i=0; i<28; i++){
-          float fi = float(i)/27.0;
+        for(int i=0; i<55; i++){
+          float fi = float(i)/54.0;
           float seed = fi*7.39+1.0;
-          float speed = 0.12 + hash(fi*3.7)*0.14;
+          float speed = 0.055 + hash(fi*3.7)*0.065;
           float t = iTime * speed;
 
           float yc = fi*2.0-1.0;
           float x = p.x;
 
           float y = yc
-            + sin(x*1.6 + t + seed)        * 0.07
-            + sin(x*3.3 - t*1.2 + seed*2.0) * 0.03
-            + sin(x*7.1 + t*0.8 + seed*3.5) * 0.012;
+            + sin(x*1.6 + t + seed)        * 0.04
+            + sin(x*3.3 - t*1.2 + seed*2.0) * 0.016
+            + sin(x*7.1 + t*0.8 + seed*3.5) * 0.006;
 
           // subtle mouse pull
           float mxInfl = exp(-(m.x-x)*(m.x-x)*1.2);
           float yAtMx = yc
-            + sin(m.x*1.6 + t + seed)        * 0.07
-            + sin(m.x*3.3 - t*1.2 + seed*2.0) * 0.03
-            + sin(m.x*7.1 + t*0.8 + seed*3.5) * 0.012;
+            + sin(m.x*1.6 + t + seed)        * 0.04
+            + sin(m.x*3.3 - t*1.2 + seed*2.0) * 0.016
+            + sin(m.x*7.1 + t*0.8 + seed*3.5) * 0.006;
           y += (m.y - yAtMx) * mxInfl * 0.22;
 
           float dist = abs(p.y - y);
 
           // hair-thin core only — no wide glow
-          float core  = 0.00022/(dist*dist+0.000028);
-          float halo  = 0.00055/(dist*dist+0.00055);
-          float strand = min(core + halo, 1.8);
+          float core  = 0.000045/(dist*dist+0.0000055);
+          float halo  = 0.00008/(dist*dist+0.00012);
+          float strand = min(core + halo, 0.9);
 
           // traveling pulse dimmer overall
           float pspeed = 1.2 + hash(fi*1.9)*1.4;
-          float pulse = 0.15 + 0.85*pow(max(0.0,sin(x*3.0-t*pspeed+fi*6.28)),4.0);
+          float pulse = 0.38 + 0.62*pow(max(0.0,sin(x*2.0-t*pspeed+fi*6.28)),3.0);
           strand *= pulse;
 
           // plans-section palette: deep cyan → blue
@@ -85,7 +102,7 @@ const HeroCanvas = () => {
             vec3(0.1+hv*0.2, 0.3, 0.9),
             fi*0.65+hv*0.25
           );
-          col += fc * strand * 0.55;
+          col += fc * strand * 0.85;
         }
 
         // tiny cursor dot
@@ -296,8 +313,8 @@ function FAQSection() {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
             ✦ Dudas frecuentes
           </span>
-          <h2 className="text-4xl font-bold text-white">Preguntas Frecuentes</h2>
-          <p className="text-white/50 mt-3 max-w-xl mx-auto">Encontrá respuestas sobre internet, facturación, soporte técnico y más.</p>
+          <h2 className="text-4xl font-bold text-white" data-animate>Preguntas Frecuentes</h2>
+          <p className="text-white/50 mt-3 max-w-xl mx-auto" data-animate data-animate-delay="1">Encontrá respuestas sobre internet, facturación, soporte técnico y más.</p>
         </div>
 
         {/* Category tabs */}
@@ -345,7 +362,7 @@ function FAQSection() {
             href="https://wa.me/5491123241875"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20"
+            className="btn-shine inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20"
           >
             Escribinos por WhatsApp
           </a>
@@ -526,7 +543,7 @@ function DGOSection() {
           {dgoPlans[activeTab].map((plan, i) => (
             <div
               key={i}
-              className={`relative flex flex-col rounded-2xl border p-7 transition-all ${
+              className={`relative flex flex-col rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
                 plan.popular
                   ? 'bg-gradient-to-b from-[#0d1f3c] to-[#091528] border-cyan-400/50 shadow-xl shadow-cyan-500/10 scale-[1.02]'
                   : 'bg-white/5 border-white/10'
@@ -806,7 +823,7 @@ function GigaredSection() {
         {plans[activeTab].map((plan, i) => (
           <div
             key={i}
-            className={`relative flex flex-col rounded-2xl border p-7 transition-all ${
+            className={`relative flex flex-col rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
               plan.popular
                 ? 'bg-gradient-to-b from-[#1a0d2e] to-[#0f0820] border-pink-400/40 shadow-xl shadow-pink-500/10 scale-[1.02]'
                 : 'bg-white/5 border-white/10'
@@ -881,6 +898,7 @@ const whatsappSvg = (
 );
 
 function App() {
+  useScrollAnimation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activePlansTab, setActivePlansTab] = useState<'gigared' | 'internet' | 'dgo'>('dgo');
 
@@ -938,7 +956,7 @@ function App() {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">NEWFIX Fibra</h1>
             <p className="text-xl md:text-2xl text-white/70 mb-10">Conexión estable y veloz para tu hogar o negocio</p>
-            <a href="#planes" className="inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105">
+            <a href="#planes" className="btn-shine inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105">
               Ver Planes
             </a>
           </div>
@@ -952,20 +970,20 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Quiénes somos
             </span>
-            <h2 className="text-4xl font-bold text-white">Sobre Nosotros</h2>
+            <h2 className="text-4xl font-bold text-white" data-animate>Sobre Nosotros</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
 
             {/* Texto */}
             <div>
-              <h3 className="text-3xl font-semibold mb-6 text-white leading-tight">
+              <h3 className="text-3xl font-semibold mb-6 text-white leading-tight" data-animate data-animate-delay="1">
                 Conectando la zona con<br />
                 <span className="text-cyan-400">internet de verdad</span>
               </h3>
-              <p className="text-white/60 mb-4 text-lg leading-relaxed">
+              <p className="text-white/60 mb-4 text-lg leading-relaxed" data-animate data-animate-delay="2">
                 NewFix no nació como una empresa gigante. Nació como un proyecto local, con trabajo técnico, esfuerzo diario y una idea clara: brindar internet confiable donde muchas veces las grandes empresas no llegan bien o no responden como deberían.
               </p>
-              <p className="text-white/60 mb-8 text-lg leading-relaxed">
+              <p className="text-white/60 mb-8 text-lg leading-relaxed" data-animate data-animate-delay="3">
                 Hoy seguimos creciendo con fibra óptica, soluciones inalámbricas y enlaces dedicados para hogares, comercios, empresas e ISPs. Invertimos en infraestructura, monitoreo y soporte técnico porque entendemos que detrás de cada conexión hay una casa, un trabajo, una familia o un negocio que necesita estar conectado.
               </p>
               <div className="space-y-3">
@@ -991,8 +1009,8 @@ function App() {
                 { value: '+10', label: 'Años en la zona', color: 'text-blue-400' },
                 { value: '3', label: 'Municipios conectados', color: 'text-cyan-400' },
                 { value: '24/7', label: 'Monitoreo de red', color: 'text-blue-400' },
-              ].map(({ value, label, color }) => (
-                <div key={label} className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all">
+              ].map(({ value, label, color }, idx) => (
+                <div key={label} data-animate="scale" data-animate-delay={String(idx + 1)} className="text-center p-8 backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-400/30 transition-all">
                   <h4 className={`text-4xl font-bold mb-3 ${color}`}>{value}</h4>
                   <p className="text-white/60 font-medium text-sm">{label}</p>
                 </div>
@@ -1010,8 +1028,8 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Nuestras ventajas
             </span>
-            <h2 className="text-4xl font-bold text-white">¿Por Qué Elegirnos?</h2>
-            <p className="text-white/50 mt-3 max-w-xl mx-auto">Somos un ISP local con infraestructura propia. Sin intermediarios, sin excusas.</p>
+            <h2 className="text-4xl font-bold text-white" data-animate>¿Por Qué Elegirnos?</h2>
+            <p className="text-white/50 mt-3 max-w-xl mx-auto" data-animate data-animate-delay="1">Somos un ISP local con infraestructura propia. Sin intermediarios, sin excusas.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
@@ -1051,17 +1069,19 @@ function App() {
                 desc: 'Navegás sin tope de GB ni throttling. Todos los planes incluyen datos ilimitados y router WiFi.',
                 highlight: false,
               },
-            ].map(({ icon, title, desc, highlight }) => (
+            ].map(({ icon, title, desc, highlight }, idx) => (
               <div
                 key={title}
-                className={`text-center p-8 backdrop-blur-sm border rounded-2xl transition-all hover:scale-105 ${
+                data-animate="scale"
+                data-animate-delay={String(idx + 1)}
+                className={`group text-center p-8 backdrop-blur-sm border rounded-2xl transition-all hover:scale-105 ${
                   highlight
                     ? 'bg-cyan-500/10 border-cyan-400/40 hover:border-cyan-400/60'
                     : 'bg-white/5 border-white/10 hover:border-cyan-400/30 hover:bg-white/8'
                 }`}
               >
                 <div
-                  className={`p-4 rounded-full mx-auto mb-5 flex items-center justify-center ${
+                  className={`p-4 rounded-full mx-auto mb-5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${
                     highlight ? 'bg-cyan-500/20 border border-cyan-400/40' : 'bg-cyan-500/10 border border-cyan-400/20'
                   }`}
                   style={{ width: '72px', height: '72px' }}
@@ -1137,7 +1157,7 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Soluciones empresariales
             </span>
-            <h2 className="text-4xl font-bold text-white">Soluciones para Empresas</h2>
+            <h2 className="text-4xl font-bold text-white" data-animate>Soluciones para Empresas</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
 
@@ -1158,7 +1178,7 @@ function App() {
                 <li className="text-white/70">500 MEGAS – <span className="font-bold text-cyan-400">$55.000</span></li>
               </ul>
               <a href="https://forms.gle/uXXEkfX1bP393zuH8" target="_blank" rel="noopener noreferrer"
-                className="block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all text-center font-semibold shadow-lg">
+                className="btn-shine block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all text-center font-semibold shadow-lg">
                 ¡Contratá ahora!
               </a>
             </div>
@@ -1188,7 +1208,7 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Dónde estamos
             </span>
-            <h2 className="text-4xl font-bold text-white">Zona de Cobertura</h2>
+            <h2 className="text-4xl font-bold text-white" data-animate>Zona de Cobertura</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="backdrop-blur-sm bg-white/5 border border-cyan-400/20 p-8 rounded-2xl hover:border-cyan-400/40 transition-all">
@@ -1224,7 +1244,7 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Medí tu conexión
             </span>
-            <h2 className="text-4xl font-bold text-white">Test de Velocidad</h2>
+            <h2 className="text-4xl font-bold text-white" data-animate>Test de Velocidad</h2>
           </div>
           <div className="max-w-6xl mx-auto"><SpeedTest /></div>
         </div>
@@ -1240,11 +1260,11 @@ function App() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
               ✦ Hablemos
             </span>
-            <h2 className="text-4xl font-bold text-white">Contáctanos</h2>
-            <p className="text-white/50 mt-3">Estamos para ayudarte. Elegí el canal que prefieras.</p>
+            <h2 className="text-4xl font-bold text-white" data-animate>Contáctanos</h2>
+            <p className="text-white/50 mt-3" data-animate data-animate-delay="1">Estamos para ayudarte. Elegí el canal que prefieras.</p>
           </div>
 
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6" data-animate="scale" data-animate-delay="2">
 
             {/* Info */}
             <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8 space-y-6">
