@@ -129,8 +129,9 @@
         <button class="plan-btn" id="plan-btn-full"    onclick="switchDGOPlan('full')">Full</button>
         <button class="plan-btn" id="plan-btn-futbol"  onclick="switchDGOPlan('futbol')">⚽ Fútbol Total *</button>
       </div>
-      <div style="text-align:center;">
+      <div style="text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0.5rem;">
         <span class="plan-note" id="dgo-plan-note">DSPORTS + Prime · 30 canales · 2 pantallas</span>
+        <span class="plan-note" id="dgo-vod-note" style="display:none;background:rgba(139,92,246,0.12);border-color:rgba(139,92,246,0.3);color:#c4b5fd;">🎬 +10.000 títulos VOD</span>
       </div>
 
       <!-- ⚽ Fútbol Argentino Premium — solo plan Fútbol Total -->
@@ -473,6 +474,7 @@
     });
     // Update note
     document.getElementById('dgo-plan-note').textContent = DGO_PLAN_NOTES[plan] || '';
+    document.getElementById('dgo-vod-note').style.display = (plan === 'full' || plan === 'futbol') ? '' : 'none';
     // Show/hide categories + update count badges
     document.querySelectorAll('#tab-dgo .category[data-plans]').forEach(function(cat) {
       var plans = cat.getAttribute('data-plans').split(' ');
