@@ -1391,6 +1391,7 @@ function App() {
             />
             <p className="text-white/40 text-sm">&copy; 2025 NewFix. Todos los derechos reservados.</p>
             <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP" className="w-16 opacity-60" />
+            <p className="text-white/20 text-xs">Desarrollado por <a href="https://velkora.ar" target="_blank" rel="noopener noreferrer" className="hover:text-white/50 transition-colors">velkora.ar</a></p>
           </div>
         </div>
       </footer>
