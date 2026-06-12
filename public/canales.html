@@ -88,6 +88,13 @@
     }
     footer { text-align: center; padding: 2rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.06); }
     @media (max-width: 600px) { .page-title h1 { font-size: 1.75rem; } .channel { width: 76px; } }
+    .plan-nav { display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; margin-bottom:2rem; }
+    .plan-btn { padding:0.5rem 1.25rem; border-radius:9999px; font-size:0.8rem; font-weight:600; cursor:pointer; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); transition:all 0.2s; white-space:nowrap; }
+    .plan-btn.active { background:linear-gradient(to right,#06b6d4,#2563eb); border-color:transparent; color:#fff; }
+    .plan-note { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(34,211,238,0.1); border:1px solid rgba(34,211,238,0.25); color:#67e8f9; font-size:0.72rem; font-weight:600; padding:0.3rem 0.75rem; border-radius:9999px; margin-bottom:1.5rem; }
+    .adds-badge { display:inline-block; background:rgba(250,204,21,0.15); border:1px solid rgba(250,204,21,0.3); color:#fbbf24; font-size:0.65rem; font-weight:700; padding:0.15rem 0.5rem; border-radius:4px; margin-left:0.4rem; vertical-align:middle; }
+    .channel.new { border-color:rgba(250,204,21,0.4); background:rgba(250,204,21,0.08); }
+    .channel.new span { color:rgba(255,255,255,0.85); }
   </style>
 </head>
 <body>
@@ -114,35 +121,52 @@
     <!-- ══ DGO ══ -->
     <div id="tab-dgo">
 
-      <div class="category">
-        <div class="cat-header"><span class="cat-emoji">🏆</span><span class="cat-name">Fútbol Argentino Premium</span><span class="cat-count">2</span></div>
+      <!-- Plan navigation -->
+      <div class="plan-nav">
+        <button class="plan-btn" id="plan-btn-lite"    onclick="switchDGOPlan('lite')">Lite</button>
+        <button class="plan-btn" id="plan-btn-plus"    onclick="switchDGOPlan('plus')">Plus</button>
+        <button class="plan-btn active" id="plan-btn-total"   onclick="switchDGOPlan('total')">Total</button>
+        <button class="plan-btn" id="plan-btn-full"    onclick="switchDGOPlan('full')">Full</button>
+        <button class="plan-btn" id="plan-btn-futbol"  onclick="switchDGOPlan('futbol')">⚽ Fútbol Total *</button>
+      </div>
+      <div style="text-align:center;">
+        <span class="plan-note" id="dgo-plan-note">DSPORTS + Prime · 30 canales · 2 pantallas</span>
+      </div>
+
+      <!-- ⚽ Fútbol Argentino Premium — solo planes Full y Fútbol Total -->
+      <div class="category" data-plans="full futbol">
+        <div class="cat-header"><span class="cat-emoji">🏆</span><span class="cat-name">Fútbol Argentino Premium<span class="adds-badge">Add-on</span></span><span class="cat-count">2</span></div>
         <div class="channels">
           <div class="channel highlight"><img src="/canales/l200.svg" alt="ESPN Premium"><span class="ch-name">ESPN Premium</span></div>
           <div class="channel highlight"><img src="/canales/l201.png" alt="TNT Sports"><span class="ch-name">TNT Sports</span></div>
         </div>
       </div>
 
-      <div class="category">
-        <div class="cat-header"><span class="cat-emoji">⚽</span><span class="cat-name">Deportes</span><span class="cat-count">14</span></div>
+      <!-- Deportes — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
+        <div class="cat-header"><span class="cat-emoji">⚽</span><span class="cat-name">Deportes</span><span class="cat-count" data-counts='{"lite":"4","plus":"14","total":"14","full":"14","futbol":"14"}'></span></div>
         <div class="channels">
-          <div class="channel"><img src="/canales/l0.png" alt="DEPORTV"><span class="ch-name">DEPORTV</span></div>
-          <div class="channel"><img src="/canales/l1.png" alt="DSPORTS +"><span class="ch-name">DSPORTS +</span></div>
-          <div class="channel"><img src="/canales/l2.png" alt="DSPORTS 2"><span class="ch-name">DSPORTS 2</span></div>
-          <div class="channel"><img src="/canales/l3.png" alt="Dsports Radio"><span class="ch-name">Dsports Radio</span></div>
-          <div class="channel"><img src="/canales/l27.png" alt="TYC SPORT INTER"><span class="ch-name">TYC SPORT INTER</span></div>
-          <div class="channel"><img src="/canales/l28.png" alt="ESPN"><span class="ch-name">ESPN</span></div>
-          <div class="channel"><img src="/canales/l29.png" alt="ESPN 2"><span class="ch-name">ESPN 2</span></div>
-          <div class="channel"><img src="/canales/l30.png" alt="ESPN 3"><span class="ch-name">ESPN 3</span></div>
-          <div class="channel"><img src="/canales/l31.png" alt="ESPN 4"><span class="ch-name">ESPN 4</span></div>
-          <div class="channel"><img src="/canales/l32.png" alt="ESPN EXTRA"><span class="ch-name">ESPN EXTRA</span></div>
-          <div class="channel"><img src="/canales/l33.png" alt="FOX SPORTS"><span class="ch-name">FOX SPORTS</span></div>
-          <div class="channel"><img src="/canales/l34.png" alt="FOX SPORTS 2"><span class="ch-name">FOX SPORTS 2</span></div>
-          <div class="channel"><img src="/canales/l35.png" alt="FOX SPORTS 3"><span class="ch-name">FOX SPORTS 3</span></div>
-          <div class="channel"><img src="/canales/l36.png" alt="GOLF CHANNEL"><span class="ch-name">GOLF CHANNEL</span></div>
+          <!-- Lite: solo DEPORTV, DSPORTS+, DSPORTS 2, DSPORTS Radio -->
+          <div class="channel" data-plans="lite plus total full futbol"><img src="/canales/l0.png" alt="DEPORTV"><span class="ch-name">DEPORTV</span></div>
+          <div class="channel" data-plans="lite plus total full futbol"><img src="/canales/l1.png" alt="DSPORTS +"><span class="ch-name">DSPORTS +</span></div>
+          <div class="channel" data-plans="lite plus total full futbol"><img src="/canales/l2.png" alt="DSPORTS 2"><span class="ch-name">DSPORTS 2</span></div>
+          <div class="channel" data-plans="lite plus total full futbol"><img src="/canales/l3.png" alt="Dsports Radio"><span class="ch-name">Dsports Radio</span></div>
+          <!-- Plus en adelante -->
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l27.png" alt="TYC SPORT INTER"><span class="ch-name">TYC SPORT INTER</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l28.png" alt="ESPN"><span class="ch-name">ESPN</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l29.png" alt="ESPN 2"><span class="ch-name">ESPN 2</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l30.png" alt="ESPN 3"><span class="ch-name">ESPN 3</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l31.png" alt="ESPN 4"><span class="ch-name">ESPN 4</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l32.png" alt="ESPN EXTRA"><span class="ch-name">ESPN EXTRA</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l33.png" alt="FOX SPORTS"><span class="ch-name">FOX SPORTS</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l34.png" alt="FOX SPORTS 2"><span class="ch-name">FOX SPORTS 2</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l35.png" alt="FOX SPORTS 3"><span class="ch-name">FOX SPORTS 3</span></div>
+          <div class="channel" data-plans="plus total full futbol"><img src="/canales/l36.png" alt="GOLF CHANNEL"><span class="ch-name">GOLF CHANNEL</span></div>
         </div>
       </div>
 
-      <div class="category">
+      <!-- Nacionales — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">🇦🇷</span><span class="cat-name">Nacionales</span><span class="cat-count">11</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l4.png" alt="Canal America"><span class="ch-name">Canal America</span></div>
@@ -159,7 +183,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Internacionales — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">🌎</span><span class="cat-name">Internacionales</span><span class="cat-count">6</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l11.png" alt="CANAL 26"><span class="ch-name">CANAL 26</span></div>
@@ -171,7 +196,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Noticias — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">📰</span><span class="cat-name">Noticias</span><span class="cat-count">15</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l12.png" alt="RCN Más"><span class="ch-name">RCN Más</span></div>
@@ -192,7 +218,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Películas y Series — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">🎬</span><span class="cat-name">Películas y Series</span><span class="cat-count">25</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l19.png" alt="FreeTV Acción"><span class="ch-name">FreeTV Acción</span></div>
@@ -223,7 +250,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Variedades — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">✨</span><span class="cat-name">Variedades</span><span class="cat-count">20</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l26.png" alt="KZO"><span class="ch-name">KZO</span></div>
@@ -249,7 +277,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Cultura y Documental — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">📚</span><span class="cat-name">Cultura y Documental</span><span class="cat-count">10</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l91.png" alt="Discovery World HD"><span class="ch-name">Discovery World HD</span></div>
@@ -265,7 +294,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Infantiles — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">🧒</span><span class="cat-name">Infantiles</span><span class="cat-count">9</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l101.png" alt="Plim Plim"><span class="ch-name">Plim Plim</span></div>
@@ -280,7 +310,8 @@
         </div>
       </div>
 
-      <div class="category">
+      <!-- Shows y Música — todos los planes -->
+      <div class="category" data-plans="lite plus total full futbol">
         <div class="cat-header"><span class="cat-emoji">🎵</span><span class="cat-name">Shows y Música</span><span class="cat-count">2</span></div>
         <div class="channels">
           <div class="channel"><img src="/canales/l110.png" alt="Quiero Música"><span class="ch-name">Quiero Música</span></div>
@@ -428,7 +459,39 @@
     document.getElementById('btn-dgo').className = 'tab-btn ' + (tab === 'dgo' ? 'active-cyan' : '');
     document.getElementById('btn-gigared').className = 'tab-btn ' + (tab === 'gigared' ? 'active' : '');
   }
-  if (window.location.hash === '#gigared') switchTab('gigared');
+
+  var DGO_PLAN_NOTES = {
+    lite:   '30 canales · 2 pantallas',
+    plus:   'DSPORTS · 30 canales · 2 pantallas',
+    total:  'DSPORTS + Prime · 30 canales · 2 pantallas',
+    full:   'DSPORTS + Prime · 80 canales · 4 pantallas',
+    futbol: '⚽ Full + DSports + ESPN Premium + TNT Sports · ⚠️ Plan temporal vigente durante el Mundial'
+  };
+
+  function switchDGOPlan(plan) {
+    // Update buttons
+    ['lite','plus','total','full','futbol'].forEach(function(p) {
+      document.getElementById('plan-btn-' + p).classList.toggle('active', p === plan);
+    });
+    // Update note
+    document.getElementById('dgo-plan-note').textContent = DGO_PLAN_NOTES[plan] || '';
+    // Show/hide categories
+    document.querySelectorAll('#tab-dgo .category[data-plans]').forEach(function(cat) {
+      var plans = cat.getAttribute('data-plans').split(' ');
+      cat.style.display = plans.indexOf(plan) !== -1 ? '' : 'none';
+    });
+    // Show/hide individual channel cards within categories
+    document.querySelectorAll('#tab-dgo .channel[data-plans]').forEach(function(ch) {
+      var plans = ch.getAttribute('data-plans').split(' ');
+      ch.style.display = plans.indexOf(plan) !== -1 ? '' : 'none';
+    });
+  }
+
+  if (window.location.hash === '#gigared') {
+    switchTab('gigared');
+  } else {
+    switchDGOPlan('total');
+  }
   </script>
 </body>
 </html>

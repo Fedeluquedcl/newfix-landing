@@ -435,7 +435,7 @@ function DGOSection() {
     { label: 'Plus',              desc: 'DSPORTS · 30 canales · 2 pantallas' },
     { label: 'Total',             desc: 'DSPORTS + Prime · 30 canales · 2 pantallas' },
     { label: 'Full',              desc: 'DSPORTS + Prime · 80 canales · 4 pantallas' },
-    { label: '⚽ Fútbol Total',   desc: 'DSPORTS + Prime + ESPN + TNT · 80 canales · 4 pantallas' },
+    { label: '⚽ Fútbol Total *', desc: 'DSPORTS + Prime + ESPN + TNT · 80 canales · 4 pantallas' },
   ];
 
   const dgoPlans: Record<number, PlanCard[]> = {
@@ -602,6 +602,13 @@ function DGOSection() {
             </div>
           ))}
         </div>
+
+        {activeTab === 4 && (
+          <p className="text-center text-amber-400/80 text-xs mt-4 flex items-center justify-center gap-1.5">
+            <span>⚠️</span>
+            <span>(*) Plan temporal, vigente únicamente durante el Mundial de Fútbol.</span>
+          </p>
+        )}
 
         {/* ── ADICIONALES ── */}
         <div className="max-w-5xl mx-auto mt-14">
