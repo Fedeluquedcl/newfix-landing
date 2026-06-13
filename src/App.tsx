@@ -833,7 +833,7 @@ function GigaredSection() {
             </div>
 
             <h3 className="text-sm font-semibold text-white/60 mb-4">
-              {activeTab === 'tv' ? 'TV Cable' : 'TV + Pack Fútbol'}
+              {activeTab === 'tv' ? 'TV' : 'TV + Pack Fútbol'}
             </h3>
 
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-3 py-1.5 mb-5 w-fit">
