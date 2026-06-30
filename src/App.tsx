@@ -162,6 +162,18 @@ const HeroCanvas = () => {
 
 const HOGAR_PLANS: NewFixPlanProps[] = [
   {
+    planName: 'Family',
+    description: 'Ideal para familias y múltiples dispositivos',
+    speed: '300 MB',
+    price: '$23.000',
+    priceNote: 'Precio sin impuesto: $19.008',
+    features: ['Ideal para familias', 'Múltiples dispositivos', 'Instalación express'],
+    buttonText: 'Contratar',
+    buttonHref: 'https://forms.gle/uXXEkfX1bP393zuH8',
+    buttonVariant: 'secondary',
+    isPopular: false,
+  },
+  {
     planName: '⚡ Fibra 500 Megas',
     description: 'Máxima velocidad para tu hogar',
     speed: '500 Mbps',
@@ -173,18 +185,6 @@ const HOGAR_PLANS: NewFixPlanProps[] = [
     buttonVariant: 'primary',
     isPopular: true,
     popularLabel: 'TOP',
-  },
-  {
-    planName: 'Family',
-    description: 'Ideal para familias y múltiples dispositivos',
-    speed: '300 MB',
-    price: '$23.000',
-    priceNote: 'Precio sin impuesto: $19.008',
-    features: ['Ideal para familias', 'Múltiples dispositivos', 'Instalación express'],
-    buttonText: 'Contratar',
-    buttonHref: 'https://forms.gle/uXXEkfX1bP393zuH8',
-    buttonVariant: 'secondary',
-    isPopular: false,
   },
   {
     planName: '🚀 Fibra 800 Mbps',
