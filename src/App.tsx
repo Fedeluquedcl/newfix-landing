@@ -162,18 +162,6 @@ const HeroCanvas = () => {
 
 const HOGAR_PLANS: NewFixPlanProps[] = [
   {
-    planName: 'Premium',
-    description: 'Velocidad superior para el uso diario',
-    speed: '200 MB',
-    price: '$21.000',
-    priceNote: 'Precio sin impuesto: $17.355',
-    features: ['Velocidad superior', 'Soporte técnico', 'Instalación express'],
-    buttonText: 'Contratar',
-    buttonHref: 'https://forms.gle/uXXEkfX1bP393zuH8',
-    buttonVariant: 'secondary',
-    isPopular: false,
-  },
-  {
     planName: '⚡ Fibra 500 Megas',
     description: 'Máxima velocidad para tu hogar',
     speed: '500 Mbps',
