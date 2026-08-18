@@ -455,35 +455,34 @@ function DGOSection() {
     ],
     2: [
       { speed:'300 Mbps', router:'Dual Band', price:'$48.882', sinImpuesto:'$40.398', popular:false,
-        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
       { speed:'500 Mbps', router:'Dual Band', price:'$53.882', sinImpuesto:'$44.530', popular:true,
-        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
       { speed:'800 Mbps', router:'WiFi 6',    price:'$60.882', sinImpuesto:'$50.315', popular:false,
-        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','2 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+30 canales en vivo','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo'], includes:['DSports'] },
     ],
     3: [
       { speed:'300 Mbps', router:'Dual Band', price:'$53.300', sinImpuesto:'$44.050', popular:false,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo'], includes:['DSports'] },
       { speed:'500 Mbps', router:'Dual Band', price:'$57.300', sinImpuesto:'$47.355', popular:true,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo'], includes:['DSports'] },
       { speed:'800 Mbps', router:'WiFi 6',    price:'$64.300', sinImpuesto:'$53.140', popular:false,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','Amazon Prime Video incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo'], includes:['DSports'] },
     ],
     4: [
       { speed:'300 Mbps', router:'Dual Band', price:'$54.900', sinImpuesto:'$45.372', popular:false,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','ESPN','TNT Sports'] },
       { speed:'500 Mbps', router:'Dual Band', price:'$58.900', sinImpuesto:'$48.677', popular:true,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','ESPN','TNT Sports'] },
       { speed:'800 Mbps', router:'WiFi 6',    price:'$65.900', sinImpuesto:'$54.462', popular:false,
-        features:['+80 canales en vivo y +10.000 títulos VOD','DSports + Amazon Prime Video','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','Prime Video','ESPN','TNT Sports'] },
+        features:['+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo'], includes:['DSports','ESPN','TNT Sports'] },
     ],
   };
 
   const includeBadges: Record<string, { bg: string; text: string; label: string }> = {
-    'DSports':     { bg: 'bg-blue-600',  text: 'text-white', label: 'D SPORTS' },
-    'Prime Video': { bg: 'bg-[#00A8E1]', text: 'text-white', label: 'prime video' },
-    'ESPN':        { bg: 'bg-red-600',   text: 'text-white', label: 'ESPN' },
-    'TNT Sports':  { bg: 'bg-[#B2027A]', text: 'text-white', label: 'TNT Sports' },
+    'DSports':    { bg: 'bg-blue-600',  text: 'text-white', label: 'D SPORTS' },
+    'ESPN':       { bg: 'bg-red-600',   text: 'text-white', label: 'ESPN' },
+    'TNT Sports': { bg: 'bg-[#B2027A]', text: 'text-white', label: 'TNT Sports' },
   };
 
   return (
