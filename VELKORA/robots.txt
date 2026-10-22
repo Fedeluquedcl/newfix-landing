@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://impuestos.velkora.ar/sitemap.xml
