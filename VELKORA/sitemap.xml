@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://impuestos.velkora.ar/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://impuestos.velkora.ar/iva/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://impuestos.velkora.ar/ingresos-brutos/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://impuestos.velkora.ar/cuanto-cobrar/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://impuestos.velkora.ar/margen-precio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://impuestos.velkora.ar/descuentos/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://impuestos.velkora.ar/cuotas-contado/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://impuestos.velkora.ar/punto-de-equilibrio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>
