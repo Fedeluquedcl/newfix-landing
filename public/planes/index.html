@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Planes de Internet y TV | Newfix</title>
+  <meta name="description" content="Conocé los planes de Internet, Internet + DGO e Internet + GigaRed Play de Newfix. Compará velocidades, servicios y consultá cobertura." />
+  <link rel="canonical" href="https://newfix.net/planes" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://newfix.net/planes" />
+  <meta property="og:title" content="Planes de Internet y TV | Newfix" />
+  <meta property="og:description" content="Todos los planes Newfix en un solo lugar. Internet, DGO y GigaRed Play para Florencio Varela y zona sur." />
+  <meta property="og:image" content="https://cwezyzfvuzfqaivihoxe.supabase.co/storage/v1/object/public/logonoeliminar/newfix/lgo%20web%20nuevo%20.PNG" />
+  <meta property="og:site_name" content="Newfix" />
+  <meta property="og:locale" content="es_AR" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGSCXGM3CH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WGSCXGM3CH');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/data/newfix-landing.css" />
+
+  <style>
+    /* ── Planes page specific ── */
+    .cat-tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .cat-tab {
+      padding: 11px 24px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(241,245,249,.55);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+      font-family: inherit;
+    }
+    .cat-tab:hover { border-color: rgba(34,211,238,.35); color: var(--text); }
+    .cat-tab.active {
+      background: linear-gradient(135deg,rgba(34,211,238,.18),rgba(59,130,246,.14));
+      border-color: rgba(34,211,238,.5);
+      color: var(--cyan);
+    }
+    .dgo-subtabs {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 32px;
+    }
+    .dgo-subtab {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(241,245,249,.5);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+      font-family: inherit;
+    }
+    .dgo-subtab:hover { border-color: rgba(249,115,22,.35); color: var(--text); }
+    .dgo-subtab.active {
+      background: rgba(249,115,22,.12);
+      border-color: rgba(249,115,22,.45);
+      color: #fb923c;
+    }
+    .dgo-desc {
+      text-align: center; color: rgba(241,245,249,.45);
+      font-size: 13px; margin-bottom: 28px;
+    }
+    .dgo-note {
+      text-align: center; color: #fbbf24; font-size: 12px;
+      margin-top: 14px; display: none;
+    }
+    .dgo-note.visible { display: block; }
+    .includes-row {
+      display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px;
+    }
+    .inc-badge {
+      font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    }
+    .inc-dsports  { background: #2563eb; color: #fff; }
+    .inc-espn     { background: #dc2626; color: #fff; }
+    .inc-tnt      { background: #B2027A; color: #fff; }
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px; max-width: 780px; margin: 32px auto 0;
+    }
+    .addon-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 18px 12px;
+      text-align: center;
+    }
+    .addon-name  { font-size: 12px; color: rgba(241,245,249,.5); margin-bottom: 4px; }
+    .addon-price { font-size: 20px; font-weight: 700; color: var(--text); }
+    .addon-unit  { font-size: 11px; color: rgba(241,245,249,.35); }
+    .channels-cta {
+      text-align: center; margin-top: 28px;
+    }
+    .btn-channels {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 10px;
+      border: 1.5px solid rgba(34,211,238,.35);
+      color: var(--cyan); font-size: 13px; font-weight: 600;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-channels:hover { background: rgba(34,211,238,.08); border-color: var(--cyan); }
+    /* Comparison table */
+    .compare-wrap { overflow-x: auto; }
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      min-width: 640px;
+    }
+    .compare-table th {
+      background: rgba(34,211,238,.08);
+      color: var(--cyan); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding: 11px 14px; text-align: left;
+      border-bottom: 1px solid rgba(34,211,238,.2);
+    }
+    .compare-table td {
+      padding: 11px 14px; font-size: 13px; color: rgba(241,245,249,.7);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(255,255,255,.03); }
+    .compare-table td.row-label { color: var(--text); font-weight: 600; }
+    .compare-table td.price-cell { color: var(--cyan); font-weight: 700; }
+    .check-yes { color: #34d399; font-weight: 700; }
+    .check-no  { color: rgba(241,245,249,.2); }
+    .gigared-subtabs {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 32px;
+    }
+    .gigared-subtab {
+      padding: 8px 18px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(241,245,249,.5);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+      font-family: inherit;
+    }
+    .gigared-subtab:hover { border-color: rgba(34,211,238,.35); color: var(--text); }
+    .gigared-subtab.active {
+      background: rgba(34,211,238,.1);
+      border-color: rgba(34,211,238,.45);
+      color: var(--cyan);
+    }
+    @media (max-width: 640px) {
+      .addons-grid { grid-template-columns: repeat(2, 1fr); }
+      .cat-tab { font-size: 13px; padding: 10px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation">
+  <div class="container navbar-inner">
+    <a href="/" class="navbar-brand" aria-label="Newfix">NEWFIX</a>
+    <div class="navbar-actions">
+      <a href="/" class="navbar-back">← Volver al sitio</a>
+      <a href="#cta-final" class="btn-navbar" data-event="click_whatsapp_planes">
+        <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Consultar cobertura
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero section-deep" id="inicio">
+  <div class="hero-bg" style="background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(34,211,238,.10) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 85% 75%,rgba(249,115,22,.06) 0%,transparent 60%);" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <div class="fade-up">
+      <span class="chip">✦ Internet · DGO · GigaRed Play</span>
+    </div>
+    <h1 class="fade-up">
+      Elegí el plan Newfix<br>
+      <span class="accent">que mejor va con vos</span>
+    </h1>
+    <p class="hero-sub fade-up">Internet, TV y entretenimiento en un solo lugar.</p>
+    <div class="hero-ctas fade-up">
+      <a href="#planes-section" class="btn-primary">Ver planes →</a>
+      <a href="#comparacion" class="btn-secondary">Comparar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="section-navy" id="planes-section">
+  <div class="container">
+
+    <!-- Selector de categorías -->
+    <div class="cat-tabs fade-up" role="tablist" aria-label="Categorías de planes">
+      <button class="cat-tab active" role="tab" aria-selected="true" aria-controls="panel-internet" id="tab-internet" data-cat="internet">
+        🌐 Solo Internet
+      </button>
+      <button class="cat-tab" role="tab" aria-selected="false" aria-controls="panel-dgo" id="tab-dgo" data-cat="dgo">
+        📺 Internet + DGO
+      </button>
+      <button class="cat-tab" role="tab" aria-selected="false" aria-controls="panel-gigared" id="tab-gigared" data-cat="gigared">
+        📡 Internet + GigaRed Play
+      </button>
+    </div>
+
+    <!-- PANEL: Solo Internet -->
+    <div id="panel-internet" role="tabpanel" aria-labelledby="tab-internet">
+      <div class="section-header fade-up" style="margin-bottom:28px;">
+        <h2 style="font-size:clamp(20px,3.5vw,30px);">Planes de internet para tu hogar</h2>
+        <p>Fibra óptica FTTH, velocidad simétrica, sin límite de datos e instalación gratuita.</p>
+      </div>
+      <div id="render-internet"></div>
+      <p class="plans-note">Precios con IVA 21% incluido. Todos los planes son simétricos y sin límite de datos.</p>
+    </div>
+
+    <!-- PANEL: DGO -->
+    <div id="panel-dgo" role="tabpanel" aria-labelledby="tab-dgo" hidden>
+      <div class="section-header fade-up" style="margin-bottom:20px;">
+        <h2 style="font-size:clamp(20px,3.5vw,30px);">Internet + <span class="accent">DGO</span></h2>
+        <p>Partners oficiales de DGO. TV en vivo, deportes y on demand con tu plan de fibra.</p>
+      </div>
+      <!-- DGO sub-tabs -->
+      <div class="dgo-subtabs fade-up" role="tablist" aria-label="Planes DGO">
+        <button class="dgo-subtab" data-dgo="lite">Lite</button>
+        <button class="dgo-subtab" data-dgo="plus">Plus</button>
+        <button class="dgo-subtab active" data-dgo="total">Total</button>
+        <button class="dgo-subtab" data-dgo="full">Full</button>
+        <button class="dgo-subtab" data-dgo="futbol">⚽ Fútbol Total</button>
+      </div>
+      <p class="dgo-desc" id="dgo-desc-text">DSports · 30 canales · 2 pantallas</p>
+      <div id="render-dgo"></div>
+      <p class="dgo-note" id="dgo-note">⚠️ Plan temporal, vigente únicamente durante el Mundial de Fútbol.</p>
+
+      <!-- Opcionales DGO -->
+      <div style="margin-top:48px;" class="fade-up">
+        <div class="section-header" style="margin-bottom:20px;">
+          <span class="chip" style="font-size:11px;">OPCIONALES</span>
+          <h3 style="font-size:18px;color:var(--text);">Agregá más servicios a tu plan DGO</h3>
+          <p style="font-size:13px;">Disponibles como add-on a cualquier suscripción DGO.</p>
+        </div>
+        <div class="addons-grid" id="render-addons"></div>
+      </div>
+
+      <!-- Grilla de canales DGO -->
+      <div class="channels-cta fade-up">
+        <a href="/canales.html" target="_blank" rel="noopener noreferrer"
+           class="btn-channels" data-event="click_channel_grid" data-label="dgo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Ver grilla de canales DGO
+        </a>
+      </div>
+      <p class="plans-note">Precios con IVA 21% incluido.</p>
+    </div>
+
+    <!-- PANEL: GigaRed Play -->
+    <div id="panel-gigared" role="tabpanel" aria-labelledby="tab-gigared" hidden>
+      <div class="section-header fade-up" style="margin-bottom:20px;">
+        <h2 style="font-size:clamp(20px,3.5vw,30px);">Internet + <span class="accent">GigaRed Play</span></h2>
+        <p>+80 canales en vivo sin decodificador ni antena, incluidos en tu plan de fibra.</p>
+      </div>
+      <!-- GigaRed sub-tabs -->
+      <div class="gigared-subtabs fade-up" role="tablist">
+        <button class="gigared-subtab active" data-gr="tv">📺 Internet + TV</button>
+        <button class="gigared-subtab" data-gr="tvFutbol">⚽ + Pack Fútbol</button>
+      </div>
+      <div id="render-gigared"></div>
+
+      <!-- Grilla de canales GigaRed -->
+      <div class="channels-cta fade-up">
+        <a href="/canales.html" target="_blank" rel="noopener noreferrer"
+           class="btn-channels" data-event="click_channel_grid" data-label="gigared">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Ver grilla de canales GigaRed Play
+        </a>
+      </div>
+      <p class="plans-note">Precios con IVA 21% incluido. Todos los planes son simétricos y sin límite de datos.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARACIÓN -->
+<section class="section-dark" id="comparacion">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="chip">✦ Compará planes</span>
+      <h2>Encontrá el plan ideal</h2>
+      <p>Comparativa a 500 Mbps como referencia. Todos los planes están disponibles en 300, 500 y 800 Mbps.</p>
+    </div>
+    <div class="compare-wrap fade-up">
+      <table class="compare-table" role="table" aria-label="Comparativa de planes Newfix a 500 Mbps">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Internet</th>
+            <th>TV en vivo</th>
+            <th>DGO</th>
+            <th>GigaRed Play</th>
+            <th>Fútbol</th>
+            <th>Precio 500 Mbps</th>
+          </tr>
+        </thead>
+        <tbody id="compare-body">
+          <!-- renderizado por JS desde NEWFIX_DATA -->
+        </tbody>
+      </table>
+    </div>
+    <p class="plans-note" style="margin-top:16px;">(*) Plan Fútbol Total DGO es temporal, vigente únicamente durante el Mundial de Fútbol.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-navy" id="faq">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="chip">✦ Preguntas frecuentes</span>
+      <h2>Todo sobre los planes Newfix</h2>
+    </div>
+    <div class="faq-list fade-up" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Qué planes de Internet tiene Newfix?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Newfix ofrece tres planes de internet por fibra óptica FTTH: 300 Mbps ($24.999), 500 Mbps ($28.999) y 800 Mbps ($35.999). Todos incluyen router WiFi, son simétricos y sin límite de datos.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Qué diferencia hay entre DGO y GigaRed Play?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">DGO es el servicio de TV de DirecTV: ofrece 30 u 80 canales en vivo, contenido on demand y pack deportes (DSports). GigaRed Play es una plataforma de más de 80 canales en vivo sin decodificador ni antena. Son dos servicios de TV distintos, incluidos en diferentes planes. No se pueden combinar.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Puedo contratar solo Internet?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí. Los planes de Solo Internet incluyen únicamente la conexión de fibra óptica. Podés contratar el plan de 300, 500 o 800 Mbps sin ningún servicio de TV adicional.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Puedo agregar fútbol a mi plan?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí, de dos formas. En los planes DGO podés agregar el Pack Fútbol ($20.970/mes) que incluye ESPN Premium y TNT Sports, o contratar directamente el plan DGO Fútbol Total. En los planes GigaRed Play existe el plan TV + Fútbol que también incluye ESPN Premium y TNT Sports.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Cómo consulto cobertura en mi domicilio?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Escribinos por WhatsApp al +54 9 11 2324-1875 con tu dirección. Verificamos disponibilidad en tu zona sin cargo y sin compromiso.</div></div>
+      </div>
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false">¿Cómo veo la grilla de canales?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Podés ver la grilla completa de canales en <a href="/canales.html" style="color:var(--cyan);" data-event="click_channel_grid" data-label="faq">newfix.net/canales.html</a>. También encontrás el botón "Ver grilla" en cada sección de planes con TV.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section-deep" id="cta-final">
+  <div class="container">
+    <div class="cta-final fade-up">
+      <span class="chip">✦ Consultá cobertura</span>
+      <h2>¿Hay Newfix en tu domicilio?</h2>
+      <p>Escribinos con tu dirección y te decimos qué planes están disponibles en tu zona.</p>
+      <a href="https://wa.me/5491123241875?text=Hola%20Newfix%20%F0%9F%91%8B%20Quiero%20consultar%20cobertura%20y%20planes%20disponibles%20en%20mi%20domicilio."
+         target="_blank" rel="noopener noreferrer"
+         class="btn-wa btn-wa-lg" data-event="click_whatsapp_planes">
+        <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Consultar cobertura por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <img class="footer-logo" src="https://cwezyzfvuzfqaivihoxe.supabase.co/storage/v1/object/public/logonoeliminar/newfix/lgo%20web%20nuevo%20.PNG" alt="NewFix Logo" loading="lazy" width="120" height="48" />
+    <p class="footer-copy">&copy; 2025 NewFix. Todos los derechos reservados.</p>
+    <img class="footer-afip" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP" loading="lazy" width="60" />
+    <p class="footer-dev">Desarrollado por <a href="https://velkora.ar" target="_blank" rel="noopener noreferrer">velkora.ar</a></p>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/5491123241875?text=Hola%20Newfix%20%F0%9F%91%8B%20Quiero%20consultar%20cobertura%20y%20planes%20disponibles%20en%20mi%20domicilio."
+   target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Contactar por WhatsApp"
+   data-event="click_whatsapp_planes">
+  <svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true" style="width:28px;height:28px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script src="/data/newfix-plans.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // ── Helpers ──────────────────────────────────────────────────────────
+  var WA_SVG = '<svg class="wa-svg" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
+  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function incBadges(includes) {
+    if (!includes || !includes.length) return '';
+    return includes.map(function(inc) {
+      var cls = inc === 'DSports' ? 'inc-dsports' : inc === 'ESPN' ? 'inc-espn' : 'inc-tnt';
+      var lbl = inc === 'DSports' ? 'D SPORTS' : inc === 'ESPN' ? 'ESPN' : 'TNT Sports';
+      return '<span class="inc-badge ' + cls + '">' + lbl + '</span>';
+    }).join('');
+  }
+
+  function renderPlanCards(containerId, plans, waPrefix, eventName) {
+    var el = document.getElementById(containerId);
+    if (!el || !plans) return;
+    var html = '<div class="plans-grid">';
+    plans.forEach(function(p, i) {
+      var waMsg = waPrefix + p.speed;
+      var waHref = newfix_waUrl(waMsg);
+      var pop = !!p.popular;
+      var delay = (i * 0.1).toFixed(1) + 's';
+      html += '<div class="card' + (pop ? ' card-popular' : '') + '" style="animation-delay:' + delay + '">';
+      if (pop) html += '<div class="popular-badge">⚡ MÁS ELEGIDO</div>';
+      if (p.tvBadge) html += '<div class="tv-badge">' + p.tvBadge + '</div>';
+      html += '<div class="plan-speed">' + p.speed + '</div>';
+      if (p.includes && p.includes.length) html += '<div class="includes-row">' + incBadges(p.includes) + '</div>';
+      html += '<div class="plan-price">' + p.price + '</div>';
+      html += '<div class="plan-price-note">Sin impuesto: ' + (p.sinIva || p.sinImpuesto || '') + '</div>';
+      html += '<ul class="plan-features">';
+      (p.features || []).forEach(function(f) {
+        html += '<li>' + CHECK_SVG + f + '</li>';
+      });
+      html += '</ul>';
+      html += '<a href="' + waHref + '" target="_blank" rel="noopener noreferrer"';
+      html += ' class="' + (pop ? 'btn-primary' : 'btn-secondary') + ' plan-btn"';
+      html += ' data-event="' + eventName + '" data-plan="' + p.speed + '" data-plan-label="' + waPrefix + p.speed + '">';
+      html += WA_SVG + ' Lo quiero</a>';
+      html += '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+
+    el.querySelectorAll('[data-event]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        newfix_trackEvent(this.getAttribute('data-event'), this.getAttribute('data-plan'));
+      });
+    });
+  }
+
+  // ── Render Internet ───────────────────────────────────────────────
+  renderPlanCards('render-internet', NEWFIX_DATA.plans.hogar,
+    'Hola Newfix 👋 Quiero consultar cobertura para el plan de internet ', 'click_plan_internet');
+
+  // ── Render DGO ────────────────────────────────────────────────────
+  var currentDgoTab = 'total';
+
+  function renderDgo(tabKey) {
+    currentDgoTab = tabKey;
+    var tab = NEWFIX_DATA.dgo.tabs.filter(function(t) { return t.key === tabKey; })[0];
+    document.getElementById('dgo-desc-text').textContent = tab ? tab.desc : '';
+    var note = document.getElementById('dgo-note');
+    note.classList.toggle('visible', tabKey === 'futbol');
+    renderPlanCards('render-dgo', NEWFIX_DATA.dgo.plans[tabKey],
+      'Hola Newfix 👋 Quiero consultar cobertura para el plan de ' + (tab ? tab.label : tabKey) + ' ',
+      'click_plan_dgo');
+    // track category view
+    newfix_trackEvent('view_dgo_tab', tabKey);
+  }
+  renderDgo('total');
+
+  // DGO add-ons
+  (function() {
+    var el = document.getElementById('render-addons');
+    if (!el) return;
+    var html = '';
+    (NEWFIX_DATA.dgo.addons || []).forEach(function(a) {
+      html += '<div class="addon-card"><div class="addon-name">' + a.name + '</div>';
+      html += '<div class="addon-price">' + a.price + '</div>';
+      html += '<div class="addon-unit">/mes</div></div>';
+    });
+    el.innerHTML = html;
+  })();
+
+  // ── Render GigaRed ────────────────────────────────────────────────
+  var currentGrTab = 'tv';
+
+  function renderGigared(key) {
+    currentGrTab = key;
+    var waPrefix = key === 'tv'
+      ? 'Hola Newfix 👋 Quiero consultar cobertura para el plan de Internet + TV GigaRed Play '
+      : 'Hola Newfix 👋 Quiero consultar cobertura para el plan de Internet + TV + Fútbol GigaRed Play ';
+    renderPlanCards('render-gigared', NEWFIX_DATA.plans[key], waPrefix,
+      key === 'tv' ? 'click_plan_gigared' : 'click_plan_gigared');
+    newfix_trackEvent('view_gigared_tab', key);
+  }
+  renderGigared('tv');
+
+  // ── Comparison table ──────────────────────────────────────────────
+  (function() {
+    var body = document.getElementById('compare-body');
+    if (!body) return;
+    var p = NEWFIX_DATA.plans;
+    var d = NEWFIX_DATA.dgo;
+
+    function p500(arr) {
+      if (!arr) return '-';
+      var found = arr.filter(function(x) { return x.speed === '500 Mbps'; })[0];
+      return found ? found.price : '-';
+    }
+
+    var YES = '<span class="check-yes">✓</span>';
+    var NO  = '<span class="check-no">—</span>';
+
+    var rows = [
+      { label: 'Solo Internet',                internet: YES, tv: NO,              dgo: NO,  gr: NO,  futbol: NO,  price: p500(p.hogar) },
+      { label: 'Internet + DGO Lite',           internet: YES, tv: '+30 canales',  dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.lite) },
+      { label: 'Internet + DGO Plus',           internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.plus) },
+      { label: 'Internet + DGO Total',          internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.total) },
+      { label: 'Internet + DGO Full',           internet: YES, tv: '+80 canales',  dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.full) },
+      { label: 'Internet + DGO Fútbol Total *', internet: YES, tv: 'ESPN + TNT',   dgo: YES, gr: NO,  futbol: YES, price: p500(d.plans.futbol) },
+      { label: 'Internet + GigaRed Play',       internet: YES, tv: '+80 canales',  dgo: NO,  gr: YES, futbol: NO,  price: p500(p.tv) },
+      { label: 'Internet + GigaRed + Fútbol',   internet: YES, tv: 'ESPN + TNT',   dgo: NO,  gr: YES, futbol: YES, price: p500(p.tvFutbol) },
+    ];
+
+    body.innerHTML = rows.map(function(r) {
+      return '<tr><td class="row-label">' + r.label + '</td>'
+        + '<td>' + r.internet + '</td>'
+        + '<td>' + r.tv + '</td>'
+        + '<td>' + r.dgo + '</td>'
+        + '<td>' + r.gr + '</td>'
+        + '<td>' + r.futbol + '</td>'
+        + '<td class="price-cell">' + r.price + '</td></tr>';
+    }).join('');
+  })();
+
+  // ── Category tab switcher ─────────────────────────────────────────
+  document.querySelectorAll('.cat-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var cat = this.getAttribute('data-cat');
+      document.querySelectorAll('.cat-tab').forEach(function(b) {
+        b.classList.remove('active'); b.setAttribute('aria-selected','false');
+      });
+      this.classList.add('active'); this.setAttribute('aria-selected','true');
+      document.getElementById('panel-internet').hidden = (cat !== 'internet');
+      document.getElementById('panel-dgo').hidden       = (cat !== 'dgo');
+      document.getElementById('panel-gigared').hidden   = (cat !== 'gigared');
+      newfix_trackEvent('view_category_planes', cat);
+    });
+  });
+
+  // ── DGO sub-tabs ─────────────────────────────────────────────────
+  document.querySelectorAll('.dgo-subtab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.dgo-subtab').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      renderDgo(this.getAttribute('data-dgo'));
+    });
+  });
+
+  // ── GigaRed sub-tabs ─────────────────────────────────────────────
+  document.querySelectorAll('.gigared-subtab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.gigared-subtab').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      renderGigared(this.getAttribute('data-gr'));
+    });
+  });
+
+  // ── FAQ accordion ────────────────────────────────────────────────
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var open = this.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-question').forEach(function(b) {
+        b.setAttribute('aria-expanded','false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!open) {
+        this.setAttribute('aria-expanded','true');
+        this.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+
+  // ── Scroll animations ────────────────────────────────────────────
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.fade-up').forEach(function(el) { io.observe(el); });
+
+  // ── Event tracking (navbar, floating, grilla) ────────────────────
+  document.querySelectorAll('[data-event]').forEach(function(el) {
+    if (el.tagName === 'BUTTON') return; // plan btns have own listener
+    el.addEventListener('click', function() {
+      var evt = this.getAttribute('data-event');
+      var lbl = this.getAttribute('data-label') || this.getAttribute('data-plan') || '';
+      newfix_trackEvent(evt, lbl);
+    });
+  });
+
+  // ── URL hash: pre-select category ────────────────────────────────
+  (function() {
+    var hash = window.location.hash.replace('#','');
+    var map = { internet:'internet', dgo:'dgo', gigared:'gigared' };
+    if (map[hash]) {
+      var btn = document.querySelector('[data-cat="' + map[hash] + '"]');
+      if (btn) btn.click();
+    }
+  })();
+
+});
+</script>
+</body>
+</html>

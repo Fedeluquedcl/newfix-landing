@@ -193,6 +193,68 @@ var NEWFIX_DATA = {
     ],
   },
 
+  // ── Planes Internet + DGO ─────────────────────────────────────────
+  // Fuente: src/App.tsx → dgoPlans / dgoTabs
+  // Para actualizar precios DGO: editar también src/App.tsx (home).
+  dgo: {
+    tabs: [
+      { key: 'lite',   label: 'Lite',             desc: '30 canales · 2 pantallas' },
+      { key: 'plus',   label: 'Plus',             desc: 'DSports · 30 canales · 2 pantallas' },
+      { key: 'total',  label: 'Total',            desc: 'DSports · 30 canales · 2 pantallas', defaultTab: true },
+      { key: 'full',   label: 'Full',             desc: 'DSports · 80 canales · 4 pantallas' },
+      { key: 'futbol', label: '⚽ Fútbol Total',  desc: 'DSports + ESPN + TNT · 80 canales · 4 pantallas',
+        note: 'Plan temporal, vigente únicamente durante el Mundial de Fútbol.' },
+    ],
+    plans: {
+      lite: [
+        { speed:'300 Mbps', price:'$40.599', sinIva:'$33.554', router:'Dual Band', popular:false,
+          features:['Internet simétrico 300 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
+        { speed:'500 Mbps', price:'$44.599', sinIva:'$36.860', router:'Dual Band', popular:true,
+          features:['Internet simétrico 500 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
+        { speed:'800 Mbps', price:'$51.599', sinIva:'$42.645', router:'WiFi 6',    popular:false,
+          features:['Internet simétrico 800 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
+      ],
+      plus: [
+        { speed:'300 Mbps', price:'$43.881', sinIva:'$36.265', router:'Dual Band', popular:false,
+          features:['Internet simétrico 300 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'500 Mbps', price:'$47.881', sinIva:'$39.571', router:'Dual Band', popular:true,
+          features:['Internet simétrico 500 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'800 Mbps', price:'$54.881', sinIva:'$45.355', router:'WiFi 6',    popular:false,
+          features:['Internet simétrico 800 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+      ],
+      total: [
+        { speed:'300 Mbps', price:'$50.881', sinIva:'$42.050', router:'Dual Band', popular:false,
+          features:['Internet simétrico 300 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'500 Mbps', price:'$55.881', sinIva:'$46.183', router:'Dual Band', popular:true,
+          features:['Internet simétrico 500 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'800 Mbps', price:'$62.881', sinIva:'$51.968', router:'WiFi 6',    popular:false,
+          features:['Internet simétrico 800 Mbps','+30 canales en vivo DGO','DSports: deportes internacionales, NBA, MotoGP','2 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+      ],
+      full: [
+        { speed:'300 Mbps', price:'$55.299', sinIva:'$45.702', router:'Dual Band', popular:false,
+          features:['Internet simétrico 300 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'500 Mbps', price:'$59.299', sinIva:'$49.007', router:'Dual Band', popular:true,
+          features:['Internet simétrico 500 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+        { speed:'800 Mbps', price:'$66.299', sinIva:'$54.793', router:'WiFi 6',    popular:false,
+          features:['Internet simétrico 800 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports'] },
+      ],
+      futbol: [
+        { speed:'300 Mbps', price:'$56.899', sinIva:'$47.024', router:'Dual Band', popular:false,
+          features:['Internet simétrico 300 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports','ESPN','TNT Sports'] },
+        { speed:'500 Mbps', price:'$60.899', sinIva:'$50.330', router:'Dual Band', popular:true,
+          features:['Internet simétrico 500 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports','ESPN','TNT Sports'] },
+        { speed:'800 Mbps', price:'$67.899', sinIva:'$56.115', router:'WiFi 6',    popular:false,
+          features:['Internet simétrico 800 Mbps','+80 canales en vivo y +10.000 títulos VOD','DSports: deportes internacionales, NBA, MotoGP','ESPN PREMIUM: fútbol argentino','TNT Sports incluido','4 pantallas en simultáneo','Instalación gratuita'], includes:['DSports','ESPN','TNT Sports'] },
+      ],
+    },
+    addons: [
+      { name: 'Atresplayer', price: '$9.300' },
+      { name: 'Paramount+',  price: '$6.750' },
+      { name: 'Pack Fútbol', price: '$20.970' },
+      { name: 'Universal+',  price: '$11.800' },
+    ],
+  },
+
   // ── Zonas de cobertura ─────────────────────────────────────────────
   coverage: {
     florencioVarela: [
