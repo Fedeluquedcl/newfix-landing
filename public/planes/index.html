@@ -162,6 +162,26 @@
       border-color: rgba(34,211,238,.45);
       color: var(--cyan);
     }
+    .speed-selector {
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .speed-btn {
+      padding: 8px 20px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(34,211,238,.25);
+      background: rgba(255,255,255,.04);
+      color: rgba(241,245,249,.55);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+      font-family: inherit;
+    }
+    .speed-btn:hover { border-color: rgba(34,211,238,.5); color: var(--text); }
+    .speed-btn.active {
+      background: rgba(34,211,238,.12);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
     @media (max-width: 640px) {
       .addons-grid { grid-template-columns: repeat(2, 1fr); }
       .cat-tab { font-size: 13px; padding: 10px 18px; }
@@ -303,10 +323,15 @@
     <div class="section-header fade-up">
       <span class="chip">✦ Compará planes</span>
       <h2>Encontrá el plan ideal</h2>
-      <p>Comparativa a 500 Mbps como referencia. Todos los planes están disponibles en 300, 500 y 800 Mbps.</p>
+      <p>Seleccioná la velocidad para comparar precios. Todos los planes están disponibles en 300, 500 y 800 Mbps.</p>
+    </div>
+    <div class="speed-selector fade-up" role="group" aria-label="Velocidad de comparación">
+      <button class="speed-btn" data-speed="300">300 Mbps</button>
+      <button class="speed-btn active" data-speed="500">500 Mbps</button>
+      <button class="speed-btn" data-speed="800">800 Mbps</button>
     </div>
     <div class="compare-wrap fade-up">
-      <table class="compare-table" role="table" aria-label="Comparativa de planes Newfix a 500 Mbps">
+      <table class="compare-table" role="table" id="compare-table" aria-label="Comparativa de planes Newfix">
         <thead>
           <tr>
             <th>Plan</th>
@@ -315,7 +340,7 @@
             <th>DGO</th>
             <th>GigaRed Play</th>
             <th>Fútbol</th>
-            <th>Precio 500 Mbps</th>
+            <th id="compare-price-th">Precio 500 Mbps</th>
           </tr>
         </thead>
         <tbody id="compare-body">
@@ -341,7 +366,7 @@
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-question" aria-expanded="false">¿Qué diferencia hay entre DGO y GigaRed Play?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-answer"><div class="faq-answer-inner">DGO es el servicio de TV de DirecTV: ofrece 30 u 80 canales en vivo, contenido on demand y pack deportes (DSports). GigaRed Play es una plataforma de más de 80 canales en vivo sin decodificador ni antena. Son dos servicios de TV distintos, incluidos en diferentes planes. No se pueden combinar.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">DGO es el servicio de TV de DirecTV con dos niveles: Lite y Plus tienen 30 canales en vivo con 2 pantallas simultáneas (Plus y Total incluyen DSports); Full y Fútbol Total tienen 80 canales, 4 pantallas y contenido VOD. GigaRed Play ofrece más de 80 canales en vivo sin decodificador ni antena. Son servicios distintos que no se pueden combinar en un mismo plan.</div></div>
       </div>
       <div class="faq-item" role="listitem">
         <button class="faq-question" aria-expanded="false">¿Puedo contratar solo Internet?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -384,7 +409,7 @@
 <footer>
   <div class="container">
     <img class="footer-logo" src="https://cwezyzfvuzfqaivihoxe.supabase.co/storage/v1/object/public/logonoeliminar/newfix/lgo%20web%20nuevo%20.PNG" alt="NewFix Logo" loading="lazy" width="120" height="48" />
-    <p class="footer-copy">&copy; 2025 NewFix. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; <span id="footer-year">2026</span> NewFix. Todos los derechos reservados.</p>
     <img class="footer-afip" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP" loading="lazy" width="60" />
     <p class="footer-dev">Desarrollado por <a href="https://velkora.ar" target="_blank" rel="noopener noreferrer">velkora.ar</a></p>
   </div>
@@ -500,15 +525,18 @@ document.addEventListener('DOMContentLoaded', function() {
   renderGigared('tv');
 
   // ── Comparison table ──────────────────────────────────────────────
-  (function() {
+  function buildCompareTable(speed) {
     var body = document.getElementById('compare-body');
+    var th   = document.getElementById('compare-price-th');
     if (!body) return;
+    if (th) th.textContent = 'Precio ' + speed;
+
     var p = NEWFIX_DATA.plans;
     var d = NEWFIX_DATA.dgo;
 
-    function p500(arr) {
+    function pBy(arr) {
       if (!arr) return '-';
-      var found = arr.filter(function(x) { return x.speed === '500 Mbps'; })[0];
+      var found = arr.filter(function(x) { return x.speed === speed; })[0];
       return found ? found.price : '-';
     }
 
@@ -516,14 +544,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var NO  = '<span class="check-no">—</span>';
 
     var rows = [
-      { label: 'Solo Internet',                internet: YES, tv: NO,              dgo: NO,  gr: NO,  futbol: NO,  price: p500(p.hogar) },
-      { label: 'Internet + DGO Lite',           internet: YES, tv: '+30 canales',  dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.lite) },
-      { label: 'Internet + DGO Plus',           internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.plus) },
-      { label: 'Internet + DGO Total',          internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.total) },
-      { label: 'Internet + DGO Full',           internet: YES, tv: '+80 canales',  dgo: YES, gr: NO,  futbol: NO,  price: p500(d.plans.full) },
-      { label: 'Internet + DGO Fútbol Total *', internet: YES, tv: 'ESPN + TNT',   dgo: YES, gr: NO,  futbol: YES, price: p500(d.plans.futbol) },
-      { label: 'Internet + GigaRed Play',       internet: YES, tv: '+80 canales',  dgo: NO,  gr: YES, futbol: NO,  price: p500(p.tv) },
-      { label: 'Internet + GigaRed + Fútbol',   internet: YES, tv: 'ESPN + TNT',   dgo: NO,  gr: YES, futbol: YES, price: p500(p.tvFutbol) },
+      { label: 'Solo Internet',                internet: YES, tv: NO,              dgo: NO,  gr: NO,  futbol: NO,  price: pBy(p.hogar) },
+      { label: 'Internet + DGO Lite',           internet: YES, tv: '+30 canales',  dgo: YES, gr: NO,  futbol: NO,  price: pBy(d.plans.lite) },
+      { label: 'Internet + DGO Plus',           internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: pBy(d.plans.plus) },
+      { label: 'Internet + DGO Total',          internet: YES, tv: 'DSports',      dgo: YES, gr: NO,  futbol: NO,  price: pBy(d.plans.total) },
+      { label: 'Internet + DGO Full',           internet: YES, tv: '+80 canales',  dgo: YES, gr: NO,  futbol: NO,  price: pBy(d.plans.full) },
+      { label: 'Internet + DGO Fútbol Total *', internet: YES, tv: 'ESPN + TNT',   dgo: YES, gr: NO,  futbol: YES, price: pBy(d.plans.futbol) },
+      { label: 'Internet + GigaRed Play',       internet: YES, tv: '+80 canales',  dgo: NO,  gr: YES, futbol: NO,  price: pBy(p.tv) },
+      { label: 'Internet + GigaRed + Fútbol',   internet: YES, tv: 'ESPN + TNT',   dgo: NO,  gr: YES, futbol: YES, price: pBy(p.tvFutbol) },
     ];
 
     body.innerHTML = rows.map(function(r) {
@@ -535,7 +563,17 @@ document.addEventListener('DOMContentLoaded', function() {
         + '<td>' + r.futbol + '</td>'
         + '<td class="price-cell">' + r.price + '</td></tr>';
     }).join('');
-  })();
+  }
+
+  buildCompareTable('500 Mbps');
+
+  document.querySelectorAll('.speed-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.speed-btn').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      buildCompareTable(this.getAttribute('data-speed') + ' Mbps');
+    });
+  });
 
   // ── Category tab switcher ─────────────────────────────────────────
   document.querySelectorAll('.cat-tab').forEach(function(btn) {
@@ -602,6 +640,10 @@ document.addEventListener('DOMContentLoaded', function() {
       newfix_trackEvent(evt, lbl);
     });
   });
+
+  // ── Footer year ──────────────────────────────────────────────────
+  var fy = document.getElementById('footer-year');
+  if (fy) fy.textContent = new Date().getFullYear();
 
   // ── URL hash: pre-select category ────────────────────────────────
   (function() {
