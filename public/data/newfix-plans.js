@@ -207,11 +207,11 @@ var NEWFIX_DATA = {
     ],
     plans: {
       lite: [
-        { speed:'300 Mbps', price:'$40.599', sinIva:'$33.554', router:'Dual Band', popular:false,
+        { speed:'300 Mbps', price:'$30.999', sinIva:'$25.619', oldPrice:'$40.599', oferta:true, router:'Dual Band', popular:false,
           features:['Internet simétrico 300 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
-        { speed:'500 Mbps', price:'$44.599', sinIva:'$36.860', router:'Dual Band', popular:true,
+        { speed:'500 Mbps', price:'$34.999', sinIva:'$28.926', oldPrice:'$44.599', oferta:true, router:'Dual Band', popular:true,
           features:['Internet simétrico 500 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
-        { speed:'800 Mbps', price:'$51.599', sinIva:'$42.645', router:'WiFi 6',    popular:false,
+        { speed:'800 Mbps', price:'$41.999', sinIva:'$34.711', oldPrice:'$51.599', oferta:true, router:'WiFi 6',    popular:false,
           features:['Internet simétrico 800 Mbps','+30 canales en vivo DGO','2 pantallas en simultáneo','Instalación gratuita'], includes:[] },
       ],
       plus: [

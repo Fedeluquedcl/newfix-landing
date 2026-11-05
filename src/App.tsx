@@ -423,6 +423,7 @@ function SpeedTest() {
 type PlanCard = {
   speed: string; router: string; price: string; sinImpuesto: string;
   popular: boolean; features: string[]; includes: string[];
+  oldPrice?: string; oferta?: boolean;
 };
 
 function DGOSection() {
@@ -438,11 +439,11 @@ function DGOSection() {
 
   const dgoPlans: Record<number, PlanCard[]> = {
     0: [
-      { speed:'300 Mbps', router:'Dual Band', price:'$40.599', sinImpuesto:'$33.554', popular:false,
+      { speed:'300 Mbps', router:'Dual Band', price:'$30.999', sinImpuesto:'$25.619', oldPrice:'$40.599', oferta:true, popular:false,
         features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
-      { speed:'500 Mbps', router:'Dual Band', price:'$44.599', sinImpuesto:'$36.860', popular:true,
+      { speed:'500 Mbps', router:'Dual Band', price:'$34.999', sinImpuesto:'$28.926', oldPrice:'$44.599', oferta:true, popular:true,
         features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
-      { speed:'800 Mbps', router:'WiFi 6',    price:'$51.599', sinImpuesto:'$42.645', popular:false,
+      { speed:'800 Mbps', router:'WiFi 6',    price:'$41.999', sinImpuesto:'$34.711', oldPrice:'$51.599', oferta:true, popular:false,
         features:['+30 canales en vivo','2 pantallas en simultáneo'], includes:[] },
     ],
     1: [
@@ -534,6 +535,11 @@ function DGOSection() {
                   MÁS ELEGIDO
                 </div>
               )}
+              {plan.oferta && (
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                  🏷 OFERTA
+                </div>
+              )}
 
               {/* DGO Logo badge */}
               <div className="flex items-center gap-1 mb-4">
@@ -564,6 +570,9 @@ function DGOSection() {
 
               {/* Price */}
               <div className="mb-1">
+                {plan.oldPrice && (
+                  <p className="text-white/35 text-sm line-through mb-0.5">{plan.oldPrice}</p>
+                )}
                 <span className="text-4xl font-bold text-white">{plan.price}</span>
                 <span className="text-white/50 text-sm ml-1">/mes</span>
               </div>

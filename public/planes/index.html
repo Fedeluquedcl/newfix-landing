@@ -162,6 +162,17 @@
       border-color: rgba(34,211,238,.45);
       color: var(--cyan);
     }
+    .oferta-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff; font-size: 11px; font-weight: 800;
+      padding: 3px 10px; border-radius: 9999px;
+      letter-spacing: .05em; margin-bottom: 10px;
+    }
+    .price-old {
+      font-size: 13px; color: rgba(241,245,249,.35);
+      text-decoration: line-through; margin-bottom: 2px;
+    }
     .speed-selector {
       display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
       margin-bottom: 24px;
@@ -450,9 +461,11 @@ document.addEventListener('DOMContentLoaded', function() {
       var delay = (i * 0.1).toFixed(1) + 's';
       html += '<div class="card' + (pop ? ' card-popular' : '') + '" style="animation-delay:' + delay + '">';
       if (pop) html += '<div class="popular-badge">⚡ MÁS ELEGIDO</div>';
+      if (p.oferta) html += '<div class="oferta-badge">🏷 OFERTA</div>';
       if (p.tvBadge) html += '<div class="tv-badge">' + p.tvBadge + '</div>';
       html += '<div class="plan-speed">' + p.speed + '</div>';
       if (p.includes && p.includes.length) html += '<div class="includes-row">' + incBadges(p.includes) + '</div>';
+      if (p.oldPrice) html += '<div class="price-old">' + p.oldPrice + '</div>';
       html += '<div class="plan-price">' + p.price + '</div>';
       html += '<div class="plan-price-note">Sin impuesto: ' + (p.sinIva || p.sinImpuesto || '') + '</div>';
       html += '<ul class="plan-features">';
