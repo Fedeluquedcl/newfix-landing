@@ -910,7 +910,7 @@ function App() {
       <nav className="bg-slate-900/90 backdrop-blur-md border-b border-white/10 fixed w-full z-50">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between">
-            <img src="/newfix-logo.jpg" alt="Newfix" className="h-8 w-auto" />
+            <img src="/newfix-logo.webp" alt="Newfix" className="h-8 w-auto" />
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map(([href, label]) => (
                 <a key={label} href={href} className="text-white/70 hover:text-cyan-400 transition-colors text-sm font-medium">{label}</a>
@@ -1382,7 +1382,7 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center space-y-4">
             <img
-              src="/newfix-logo.jpg"
+              src="/newfix-logo.webp"
               alt="NewFix Logo" className="h-12 w-auto opacity-80"
             />
             <p className="text-white/40 text-sm">&copy; 2025 NewFix. Todos los derechos reservados.</p>
