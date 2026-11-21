@@ -943,11 +943,122 @@ function App() {
         <HeroCanvas />
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">NEWFIX Fibra</h1>
-            <p className="text-xl md:text-2xl text-white/70 mb-10">Conexión estable y veloz para tu hogar o negocio</p>
-            <a href="#planes" className="btn-shine inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105">
-              Ver Planes
-            </a>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">NEWFIX Fibra</h1>
+            <p className="text-xl md:text-2xl text-white/70 mb-2">Conexión simétrica desde 300 Mbps</p>
+            <p className="text-base md:text-lg text-white/50 mb-10">Florencio Varela · Almirante Brown · Berazategui</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="#planes" className="btn-shine inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105">
+                Ver Planes
+              </a>
+              <a href="#cobertura" className="inline-block border border-white/30 text-white/80 px-10 py-4 rounded-full font-semibold hover:border-cyan-400/60 hover:text-white transition-all duration-300">
+                Consultar Cobertura
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PLANES (toggle) ── */}
+      <section id="planes" className="pt-20 pb-0 bg-[#060d1f]">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex rounded-2xl bg-white/5 border border-white/10 p-1.5 gap-1 flex-wrap justify-center">
+              <button
+                onClick={() => setActivePlansTab('gigared')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
+                  activePlansTab === 'gigared'
+                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                <img src="/logos/gigaredplay.svg" alt="GigaredPlay" className="h-4 object-contain brightness-[10]" />
+              </button>
+              <button
+                onClick={() => setActivePlansTab('internet')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all ${
+                  activePlansTab === 'internet'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                🌐 Solo Internet
+              </button>
+              <button
+                onClick={() => setActivePlansTab('dgo')}
+                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
+                  activePlansTab === 'dgo'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
+                    : 'text-white/50 hover:text-white'
+                }`}
+              >
+                <img src="/logos/dgo.png" alt="DGO" className="h-5 object-contain" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {activePlansTab === 'internet' && (
+        <div className="bg-[#060d1f]">
+          <NewFixPricingSection plans={HOGAR_PLANS} title={<>Planes de <span className="text-cyan-300">Internet</span></>} />
+        </div>
+      )}
+      {activePlansTab === 'dgo' && <DGOSection />}
+      {activePlansTab === 'gigared' && (
+        <div className="pb-20 bg-[#060d1f]">
+          <div className="container mx-auto px-6">
+            <GigaredSection />
+          </div>
+        </div>
+      )}
+
+      {/* ── PLANES COMERCIO & DEDICADO ── */}
+      <section className="py-20 bg-[#0f172a]">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
+              ✦ Soluciones empresariales
+            </span>
+            <h2 className="text-4xl font-bold text-white" data-animate>Soluciones para Empresas</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+            {/* Comercio */}
+            <div className="backdrop-blur-sm bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-cyan-400/30 transition-all duration-300 hover:scale-105">
+              <h3 className="text-2xl font-bold text-white mb-4">Internet para tu Comercio</h3>
+              <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-widest mb-3">Beneficios destacados</h4>
+              <ul className="space-y-2 mb-6">
+                {['Atención online priorizada', 'Soporte técnico priorizado', 'IP pública/fija opcional'].map(f => (
+                  <li key={f} className="flex items-center"><CheckCircle2 className="h-5 w-5 text-cyan-400 mr-2 flex-shrink-0" /><span className="text-white/70">{f}</span></li>
+                ))}
+              </ul>
+              <div className="w-full h-px bg-white/10 mb-6" />
+              <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-widest mb-3">Planes disponibles</h4>
+              <ul className="space-y-2 mb-8">
+                <li className="text-white/70">100 MEGAS – <span className="font-bold text-cyan-400">$29.500</span></li>
+                <li className="text-white/70">300 MEGAS – <span className="font-bold text-cyan-400">$40.000</span></li>
+                <li className="text-white/70">500 MEGAS – <span className="font-bold text-cyan-400">$55.000</span></li>
+              </ul>
+              <a href="https://forms.gle/uXXEkfX1bP393zuH8" target="_blank" rel="noopener noreferrer"
+                className="btn-shine block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all text-center font-semibold shadow-lg">
+                ¡Contratá ahora!
+              </a>
+            </div>
+
+            {/* Dedicado */}
+            <div className="backdrop-blur-sm bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-cyan-400/30 transition-all duration-300 hover:scale-105">
+              <h3 className="text-2xl font-bold text-white mb-2">Dedicado</h3>
+              <p className="text-white/60 mb-6">Servicio ideal para tu ISP o Empresa.</p>
+              <ul className="space-y-3 mb-8">
+                {['Apto reventa', 'Asesoría al ISP', 'IP Pública', 'Conexión 1G/10G', 'Soporte prioritario', 'Instalación express'].map(f => (
+                  <li key={f} className="flex items-center"><CheckCircle2 className="h-5 w-5 text-cyan-400 mr-2 flex-shrink-0" /><span className="text-white/70">{f}</span></li>
+                ))}
+              </ul>
+              <a href="https://wa.me/5491123241875" target="_blank" rel="noopener noreferrer"
+                className="block w-full bg-white/10 border border-white/20 text-white py-3 rounded-xl hover:bg-white/20 transition-all text-center font-semibold">
+                Consultar
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -1085,111 +1196,6 @@ function App() {
         </div>
       </section>
 
-      {/* ── PLANES (toggle) ── */}
-      <section id="planes" className="pt-20 pb-0 bg-[#060d1f]">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-center mb-4">
-            <div className="inline-flex rounded-2xl bg-white/5 border border-white/10 p-1.5 gap-1 flex-wrap justify-center">
-              <button
-                onClick={() => setActivePlansTab('gigared')}
-                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
-                  activePlansTab === 'gigared'
-                    ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow-lg'
-                    : 'text-white/50 hover:text-white'
-                }`}
-              >
-                <img src="/logos/gigaredplay.svg" alt="GigaredPlay" className="h-4 object-contain brightness-[10]" />
-              </button>
-              <button
-                onClick={() => setActivePlansTab('internet')}
-                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all ${
-                  activePlansTab === 'internet'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
-                    : 'text-white/50 hover:text-white'
-                }`}
-              >
-                🌐 Solo Internet
-              </button>
-              <button
-                onClick={() => setActivePlansTab('dgo')}
-                className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 ${
-                  activePlansTab === 'dgo'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
-                    : 'text-white/50 hover:text-white'
-                }`}
-              >
-                <img src="/logos/dgo.png" alt="DGO" className="h-5 object-contain" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {activePlansTab === 'internet' && (
-        <div className="bg-[#060d1f]">
-          <NewFixPricingSection plans={HOGAR_PLANS} title={<>Planes de <span className="text-cyan-300">Internet</span></>} />
-        </div>
-      )}
-      {activePlansTab === 'dgo' && <DGOSection />}
-      {activePlansTab === 'gigared' && (
-        <div className="pb-20 bg-[#060d1f]">
-          <div className="container mx-auto px-6">
-            <GigaredSection />
-          </div>
-        </div>
-      )}
-
-      {/* ── PLANES COMERCIO & DEDICADO ── */}
-      <section className="py-20 bg-[#0f172a]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-400/25 text-cyan-300 text-xs font-semibold uppercase tracking-widest mb-5">
-              ✦ Soluciones empresariales
-            </span>
-            <h2 className="text-4xl font-bold text-white" data-animate>Soluciones para Empresas</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-            {/* Comercio */}
-            <div className="backdrop-blur-sm bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-cyan-400/30 transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl font-bold text-white mb-4">Internet para tu Comercio</h3>
-              <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-widest mb-3">Beneficios destacados</h4>
-              <ul className="space-y-2 mb-6">
-                {['Atención online priorizada', 'Soporte técnico priorizado', 'IP pública/fija opcional'].map(f => (
-                  <li key={f} className="flex items-center"><CheckCircle2 className="h-5 w-5 text-cyan-400 mr-2 flex-shrink-0" /><span className="text-white/70">{f}</span></li>
-                ))}
-              </ul>
-              <div className="w-full h-px bg-white/10 mb-6" />
-              <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-widest mb-3">Planes disponibles</h4>
-              <ul className="space-y-2 mb-8">
-                <li className="text-white/70">100 MEGAS – <span className="font-bold text-cyan-400">$29.500</span></li>
-                <li className="text-white/70">300 MEGAS – <span className="font-bold text-cyan-400">$40.000</span></li>
-                <li className="text-white/70">500 MEGAS – <span className="font-bold text-cyan-400">$55.000</span></li>
-              </ul>
-              <a href="https://forms.gle/uXXEkfX1bP393zuH8" target="_blank" rel="noopener noreferrer"
-                className="btn-shine block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all text-center font-semibold shadow-lg">
-                ¡Contratá ahora!
-              </a>
-            </div>
-
-            {/* Dedicado */}
-            <div className="backdrop-blur-sm bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-cyan-400/30 transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl font-bold text-white mb-2">Dedicado</h3>
-              <p className="text-white/60 mb-6">Servicio ideal para tu ISP o Empresa.</p>
-              <ul className="space-y-3 mb-8">
-                {['Apto reventa', 'Asesoría al ISP', 'IP Pública', 'Conexión 1G/10G', 'Soporte prioritario', 'Instalación express'].map(f => (
-                  <li key={f} className="flex items-center"><CheckCircle2 className="h-5 w-5 text-cyan-400 mr-2 flex-shrink-0" /><span className="text-white/70">{f}</span></li>
-                ))}
-              </ul>
-              <a href="https://wa.me/5401123241875" target="_blank" rel="noopener noreferrer"
-                className="block w-full bg-white/10 border border-white/20 text-white py-3 rounded-xl hover:bg-white/20 transition-all text-center font-semibold">
-                Consultar
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── COBERTURA ── */}
       <section id="cobertura" className="py-20 bg-[#0a0a0a]">
         <div className="container mx-auto px-6">
@@ -1211,7 +1217,7 @@ function App() {
             <div className="backdrop-blur-sm bg-white/5 border border-blue-400/20 p-8 rounded-2xl hover:border-blue-400/40 transition-all">
               <h3 className="text-xl font-bold text-blue-400 mb-6 flex items-center"><MapPin className="h-5 w-5 mr-2" />Almirante Brown</h3>
               <ul className="space-y-2 text-white/60">
-                {['Barrio Lujan','Santa Intes','La 160'].map(b => (
+                {['Barrio Luján','Santa Inés','La 160'].map(b => (
                   <li key={b} className="flex items-start"><span className="text-blue-400 mr-2">•</span><span>{b}</span></li>
                 ))}
               </ul>
@@ -1385,7 +1391,7 @@ function App() {
               src="/newfix-logo.webp"
               alt="NewFix Logo" className="h-12 w-auto opacity-80"
             />
-            <p className="text-white/40 text-sm">&copy; 2025 NewFix. Todos los derechos reservados.</p>
+            <p className="text-white/40 text-sm">&copy; {new Date().getFullYear()} NewFix. Todos los derechos reservados.</p>
             <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP" className="w-16 opacity-60" />
             <p className="text-white/20 text-xs">Desarrollado por <a href="https://velkora.ar" target="_blank" rel="noopener noreferrer" className="hover:text-white/50 transition-colors">velkora.ar</a></p>
           </div>
@@ -1393,7 +1399,7 @@ function App() {
       </footer>
 
       {/* ── WhatsApp flotante ── */}
-      <a href="https://wa.me/5401123241875" target="_blank" rel="noopener noreferrer"
+      <a href="https://wa.me/5491123241875" target="_blank" rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 z-50 flex items-center justify-center"
         aria-label="Contactar por WhatsApp">
         {whatsappSvg}
